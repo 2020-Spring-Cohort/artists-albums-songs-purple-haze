@@ -103,6 +103,9 @@ local.properties
 
 .sts4-cache/
 
+#the template folder for pictures
+template pictures/
+
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
@@ -114,4 +117,7 @@ local.properties
 # Ignore all local history of files
 .history
 
+
+
 # End of https://www.gitignore.io/api/eclipse,visualstudiocode
+
