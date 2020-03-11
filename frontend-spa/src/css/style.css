@@ -1,0 +1,22 @@
+body{
+    font-family: sans-serif;
+}
+
+.single-artist{
+   
+    display: inline;
+}
+
+.artist-name {
+    margin: 15px;
+    line-height: 0;
+    size: 2em;
+}
+
+.artist-label{
+    margin: 5px;
+}
+
+.artist-picture{
+    border-radius: 100%;
+}
