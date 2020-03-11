@@ -54,10 +54,24 @@ footer{
     grid-template-rows: auto;
     justify-content: space-around;
 }
-
+.songs-section{
+    display: grid;
+    grid-template-columns: 25% 75%;
+    grid-template-rows: 1fr;
+}
 .single-artist{
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 15px;
 }
+.song-list div{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+
+}
+.album-detail-pic{
+    text-align: center;
+}
+

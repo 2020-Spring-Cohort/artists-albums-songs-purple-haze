@@ -12,6 +12,10 @@ body{
     line-height: 0;
     size: 2em;
 }
+.artist-name--album-detail{
+    line-height: auto;
+
+}
 
 .artist-label{
     margin: 5px;
