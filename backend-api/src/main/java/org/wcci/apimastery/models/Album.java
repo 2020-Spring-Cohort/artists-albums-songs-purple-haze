@@ -1,26 +1,10 @@
 package org.wcci.apimastery.models;
 
-import javax.persistence.*;
-import java.util.Objects;
-
-@Entity
 public class Album {
-
-    @Id
-    @GeneratedValue
-    private Long id;
-    @ManyToOne
-
-    private Artist artist;
-
-
     private String albumTitle;
-//    private String recordLabel;
+    private String recordLabel;
 
-    protected Album(){}
-
-    public Album(String albumTitle, Artist artist) {
-        this.artist = artist;
+    public Album(String albumTitle) {
         this.albumTitle = albumTitle;
     }
 
@@ -28,27 +12,8 @@ public class Album {
         return albumTitle;
     }
 
-//    public String getRecordLabel() {
-//        return recordLabel;
-//    }
-
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Album)) return false;
-        Album album = (Album) o;
-        return Objects.equals(id, album.id) &&
-                Objects.equals(artist, album.artist) &&
-                Objects.equals(albumTitle, album.albumTitle);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, artist, albumTitle);
+    public String getRecordLabel() {
+        return recordLabel;
     }
 }
 
