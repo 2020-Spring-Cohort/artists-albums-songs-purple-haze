@@ -6,9 +6,9 @@ body {
 
 main {
     display: grid;
-
 }
-.main-nav{
+
+.main-nav {
     background-color: darkgrey;
 }
 
@@ -22,26 +22,24 @@ main {
     padding: 0;
     margin: 0;
     min-height: 50px;
-
-
 }
+
 .main-nav ul li {
     min-width: 150px;
 }
 
-header{
+header {
     height: 20vh;
     background-color: azure;
 }
 
 section {
     min-height: 80vh;
-
 }
 
-footer{
-        height: 300px;
-        background-color: black;
+footer {
+    height: 300px;
+    background-color: black;
 }
 
 .main-section {
@@ -54,24 +52,67 @@ footer{
     grid-template-rows: auto;
     justify-content: space-around;
 }
-.songs-section{
+
+.songs-section {
     display: grid;
     grid-template-columns: 25% 75%;
     grid-template-rows: 1fr;
 }
-.single-artist{
+
+.single-artist {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 15px;
 }
-.song-list div{
+
+.song-list div {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
+}
+
+.song-detail {
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    grid-template-rows: auto;
+}
+
+.song-detail-pic{
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    margin-right: 40px;
 
 }
-.album-detail-pic{
+
+
+.song-detail-info {
+      margin-left: 40px;
+}
+.album-detail-pic {
     text-align: center;
 }
+.artist-detail{
 
+}
+
+.album-list{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    justify: space-around;
+    background-color: grey;
+    padding:100px; 
+    margin-top: 20px;
+}
+.artist-detail-info{
+    display: grid;
+    grid-template-columns: 20% 80% ;
+    justify-content: space-around;
+    padding:100px;
+    max-height: 200px;
+}
+.single-album{
+   
+}

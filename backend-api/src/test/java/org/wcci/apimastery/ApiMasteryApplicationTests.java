@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 
 @SpringBootTest
-public class ApiMasteryApplicationTests {
+public class gitApiMasteryApplicationTests {
 
 	@Test
 	public void contextLoads() {
