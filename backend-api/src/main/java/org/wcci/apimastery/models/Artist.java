@@ -4,7 +4,7 @@ public class Artist {
 
     private String name;
     private String albums;
-    private int age;
+    private Long birthDate;
     private String recordLabel;
     private String hometown;
 
@@ -18,8 +18,8 @@ public class Artist {
         return albums;
     }
 
-    public int getAge() {
-        return age;
+    public Long getBirthDate() {
+        return birthDate;
     }
 
     public String getRecordLabel() {
