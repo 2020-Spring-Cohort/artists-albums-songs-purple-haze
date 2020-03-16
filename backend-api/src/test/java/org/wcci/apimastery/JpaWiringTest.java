@@ -63,9 +63,12 @@ public class JpaWiringTest {
     }
 
     @Test
-    public void canDisplaySingleSongWithData(){
+    public void canDisplaySingleSongWithAlbum(){
         Song testSong1 = new Song("TestSong1", testAlbum1);
+        Song testSong2 = new Song("TestSong2", testAlbum1);
         songRepo.save(testSong1);
+        songRepo.save(testSong2);
+        albumRepo.save(testAlbum1);
         entityManager.flush();
         entityManager.clear();
 
@@ -75,8 +78,23 @@ public class JpaWiringTest {
         assertThat(retrievedSong.getAlbum()).isEqualTo(testAlbum1);
         assertThat(retrievedSong.getSongTitle()).isEqualTo("TestSong1");
         assertThat(retrievedAlbum.getArtist()).isEqualTo(testArtist);
+        assertThat(testAlbum1.getSongs()).contains(testSong1, testSong2);
+    }
+
+    @Test
+    public void canDisplaySingleArtistData(){
+        testArtist.setBirthDate(101272);
+        testArtist.setHometown("Columbus");
+        testArtist.setRecordLabel("Atlantic");
+        artistRepo.save(testArtist);
+
+        assertThat(testArtist.getBirthDate()).isEqualTo(101272);
+        assertThat(testArtist.getHometown()).isEqualTo("Columbus");
+        assertThat(testArtist.getRecordLabel()).isEqualTo("Atlantic");
 
     }
+
+
     
 
 }

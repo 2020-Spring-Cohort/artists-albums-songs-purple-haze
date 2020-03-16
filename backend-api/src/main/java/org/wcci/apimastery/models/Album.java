@@ -46,16 +46,25 @@ public class Album {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Album)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
+
         Album album = (Album) o;
-        return Objects.equals(id, album.id) &&
-                Objects.equals(artist, album.artist) &&
-                Objects.equals(albumTitle, album.albumTitle);
+
+        if (id != null ? !id.equals(album.id) : album.id != null) return false;
+        if (artist != null ? !artist.equals(album.artist) : album.artist != null) return false;
+        return albumTitle != null ? albumTitle.equals(album.albumTitle) : album.albumTitle == null;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, artist, albumTitle);
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (artist != null ? artist.hashCode() : 0);
+        result = 31 * result + (albumTitle != null ? albumTitle.hashCode() : 0);
+        return result;
+    }
+
+    public Collection <Song> getSongs() {
+        return this.songs;
     }
 }
 
