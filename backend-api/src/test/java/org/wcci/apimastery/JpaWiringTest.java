@@ -1,5 +1,6 @@
 package org.wcci.apimastery;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -8,6 +9,8 @@ import org.wcci.apimastery.models.Album;
 import org.wcci.apimastery.models.Artist;
 import org.wcci.apimastery.ArtistRepository;
 import org.wcci.apimastery.AlbumRepository;
+import org.wcci.apimastery.models.Song;
+
 import java.util.Properties;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,21 +25,42 @@ public class JpaWiringTest {
     @Autowired
     private TestEntityManager entityManager;
 
-    @Test
-    public void artistShouldHaveMultipleAlbums(){
-        Artist testArtist = new Artist("MJ");
+    private Artist testArtist;
+    private Album testAlbum1;
+    private Album testAlbum2;
+
+
+    @BeforeEach
+    void setUp() {
+        testArtist = new Artist("MJ");
         artistRepo.save(testArtist);
-        Album testAlbum = new Album("Thriller", testArtist);
-        Album testAlbum2 = new Album("bad" , testArtist);
-        albumRepo.save(testAlbum);
+
+        testAlbum1 = new Album("Thriller", testArtist);
+        testAlbum2 = new Album("bad" , testArtist);
+
+        albumRepo.save(testAlbum1);
         albumRepo.save(testAlbum2);
 
+
+
+
+    }
+
+    @Test
+    public void artistShouldHaveMultipleAlbums(){
         entityManager.flush();
         entityManager.clear();
+
         Artist retrievedArtist = artistRepo.findById(testArtist.getId()).get();
-        Album retrievedAlbum = albumRepo.findById(testAlbum.getId()).get();
+        Album retrievedAlbum = albumRepo.findById(testAlbum1.getId()).get();
         Album retrievedAlbum2 = albumRepo.findById(testAlbum2.getId()).get();
         assertThat(retrievedArtist.getAlbums()).contains(retrievedAlbum, retrievedAlbum2);
+    }
+
+    @Test
+    public void canDisplaySingSongWithData(){
+        Song testSong1 = new Song("TestSong1");
+
     }
     
 

@@ -1,6 +1,7 @@
 package org.wcci.apimastery.models;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -9,10 +10,12 @@ public class Album {
     @Id
     @GeneratedValue
     private Long id;
-    @ManyToOne
 
+    @ManyToOne
     private Artist artist;
 
+    @OneToMany (mappedBy = "album")
+    private Collection<Song> songs;
 
     private String albumTitle;
 //    private String recordLabel;
