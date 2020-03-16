@@ -9,12 +9,21 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Song {
 
+    public Long getId() {
+        return id;
+    }
+
     @Id
     @GeneratedValue
     private Long id;
 
 
     private String songTitle;
+
+    public void setDuration(Long duration) {
+        this.duration = duration;
+    }
+
     private Long duration;
 
     public Album getAlbum() {

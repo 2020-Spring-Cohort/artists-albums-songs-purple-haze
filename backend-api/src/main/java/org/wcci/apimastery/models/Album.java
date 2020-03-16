@@ -11,6 +11,10 @@ public class Album {
     @GeneratedValue
     private Long id;
 
+    public Artist getArtist() {
+        return artist;
+    }
+
     @ManyToOne
     private Artist artist;
 

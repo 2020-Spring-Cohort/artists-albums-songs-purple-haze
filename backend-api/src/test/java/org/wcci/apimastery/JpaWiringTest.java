@@ -11,6 +11,7 @@ import org.wcci.apimastery.ArtistRepository;
 import org.wcci.apimastery.AlbumRepository;
 import org.wcci.apimastery.models.Song;
 
+
 import java.util.Properties;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -24,10 +25,14 @@ public class JpaWiringTest {
     private AlbumRepository albumRepo;
     @Autowired
     private TestEntityManager entityManager;
+    @Autowired
+    private SongRepository songRepo;
 
     private Artist testArtist;
     private Album testAlbum1;
     private Album testAlbum2;
+
+
 
 
     @BeforeEach
@@ -58,8 +63,18 @@ public class JpaWiringTest {
     }
 
     @Test
-    public void canDisplaySingSongWithData(){
-        Song testSong1 = new Song("TestSong1");
+    public void canDisplaySingleSongWithData(){
+        Song testSong1 = new Song("TestSong1", testAlbum1);
+        songRepo.save(testSong1);
+        entityManager.flush();
+        entityManager.clear();
+
+        Song retrievedSong = songRepo.findById(testSong1.getId()).get();
+        Album retrievedAlbum = retrievedSong.getAlbum();
+
+        assertThat(retrievedSong.getAlbum()).isEqualTo(testAlbum1);
+        assertThat(retrievedSong.getSongTitle()).isEqualTo("TestSong1");
+        assertThat(retrievedAlbum.getArtist()).isEqualTo(testArtist);
 
     }
     
