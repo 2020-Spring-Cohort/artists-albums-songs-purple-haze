@@ -6,4 +6,6 @@ import org.wcci.apimastery.models.Artist;
 public interface ArtistRepository extends CrudRepository <Artist, Long>{
 
 
+
+
 }
