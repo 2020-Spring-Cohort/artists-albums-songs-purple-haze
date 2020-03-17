@@ -1,6 +1,8 @@
 package org.wcci.apimastery.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -29,6 +31,7 @@ public class Album {
     public Album(String albumTitle, Artist artist) {
         this.artist = artist;
         this.albumTitle = albumTitle;
+
     }
 
     public String getAlbumTitle() {
@@ -64,7 +67,7 @@ public class Album {
     }
 
     public Collection <Song> getSongs() {
-        return this.songs;
+        return songs;
     }
 }
 

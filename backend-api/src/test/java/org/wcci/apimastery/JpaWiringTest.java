@@ -72,13 +72,14 @@ public class JpaWiringTest {
         entityManager.flush();
         entityManager.clear();
 
-        Song retrievedSong = songRepo.findById(testSong1.getId()).get();
-        Album retrievedAlbum = retrievedSong.getAlbum();
+        Song retrievedSong1 = songRepo.findById(testSong1.getId()).get();
+        Song retrievedSong2 = songRepo.findById(testSong1.getId()).get();
+        Album retrievedAlbum = retrievedSong1.getAlbum();
 
-        assertThat(retrievedSong.getAlbum()).isEqualTo(testAlbum1);
-        assertThat(retrievedSong.getSongTitle()).isEqualTo("TestSong1");
+        assertThat(retrievedSong1.getAlbum()).isEqualTo(testAlbum1);
+        assertThat(retrievedSong2.getSongTitle()).isEqualTo("TestSong1");
         assertThat(retrievedAlbum.getArtist()).isEqualTo(testArtist);
-        assertThat(testAlbum1.getSongs()).contains(testSong1, testSong2);
+        assertThat(testAlbum1.getSongs()).contains(retrievedSong1, retrievedSong2);
     }
 
     @Test
