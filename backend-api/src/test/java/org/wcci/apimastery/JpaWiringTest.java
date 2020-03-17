@@ -46,10 +46,7 @@ public class JpaWiringTest {
         albumRepo.save(testAlbum1);
         albumRepo.save(testAlbum2);
 
-
-
-
-    }
+   }
 
     @Test
     public void artistShouldHaveMultipleAlbums(){
@@ -73,12 +70,13 @@ public class JpaWiringTest {
         entityManager.clear();
 
         Song retrievedSong = songRepo.findById(testSong1.getId()).get();
+        Song retrievedSong2 = songRepo.findById(testSong2.getId()).get();
         Album retrievedAlbum = retrievedSong.getAlbum();
 
         assertThat(retrievedSong.getAlbum()).isEqualTo(testAlbum1);
         assertThat(retrievedSong.getSongTitle()).isEqualTo("TestSong1");
         assertThat(retrievedAlbum.getArtist()).isEqualTo(testArtist);
-        assertThat(testAlbum1.getSongs()).contains(testSong1, testSong2);
+        assertThat(retrievedAlbum.getSongs()).contains(retrievedSong, retrievedSong2);
     }
 
     @Test
@@ -95,6 +93,6 @@ public class JpaWiringTest {
     }
 
 
-    
+
 
 }
