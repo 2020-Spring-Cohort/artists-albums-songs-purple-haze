@@ -43,6 +43,10 @@ public class Album {
         return id;
     }
 
+    public Collection<Song> getSongs() {
+        return songs;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -63,8 +67,6 @@ public class Album {
         return result;
     }
 
-    public Collection <Song> getSongs() {
-        return this.songs;
-    }
+
 }
 
