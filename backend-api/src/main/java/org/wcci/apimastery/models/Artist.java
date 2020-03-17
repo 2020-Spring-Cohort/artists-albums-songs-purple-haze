@@ -16,10 +16,11 @@ public class Artist {
     private Collection<Album> albums;
 
     private String name;
-//    private Long birthDate;
-//    private String recordLabel;
-//    private String hometown;
 
+    private int birthDate;
+
+    private String recordLabel;
+    private String hometown;
 
     protected Artist(){}
 
@@ -35,17 +36,30 @@ public class Artist {
         return name;
     }
 
-//    public Long getBirthDate() {
-//        return birthDate;
-//    }
-//
-//    public String getRecordLabel() {
-//        return recordLabel;
-//    }
-//
-//    public String getHometown() {
-//        return hometown;
-//    }
+
+    public int getBirthDate() {
+        return birthDate;
+    }
+
+    public String getRecordLabel() {
+        return recordLabel;
+    }
+
+    public String getHometown() {
+        return hometown;
+    }
+
+    public void setBirthDate(int birthDate) {
+    this.birthDate = birthDate;
+}
+
+    public void setRecordLabel(String recordLabel) {
+        this.recordLabel = recordLabel;
+    }
+
+    public void setHometown(String hometown) {
+        this.hometown = hometown;
+    }
 
     public Collection<Album> getAlbums() {
         return albums;
