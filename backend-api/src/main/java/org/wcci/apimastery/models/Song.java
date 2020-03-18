@@ -1,23 +1,16 @@
 package org.wcci.apimastery.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 
 @Entity
 public class Song {
 
-    public Long getId() {
-        return id;
-    }
-
     @Id
     @GeneratedValue
     private Long id;
-
 
     private String songTitle;
 
@@ -35,12 +28,18 @@ public class Song {
     @ManyToOne
     private Album album;
 
+    @OneToMany (mappedBy = "song")
+    private Collection<Comment> comments;
     public Song(String songTitle, Album album){
         this.songTitle = songTitle;
         this.album = album;
     }
 
     public Song(){}
+
+    public Long getId() {
+        return id;
+    }
 
     public String getSongTitle() {
         return songTitle;
@@ -50,14 +49,10 @@ public class Song {
         return duration;
     }
 
-    @Override
-    public String toString() {
-        return "Song{" +
-                "id=" + id +
-                ", songTitle='" + songTitle + '\'' +
-                ", duration=" + duration +
-                ", album=" + album +
-                '}';
+
+
+    public Collection<Comment> getComments() {
+        return comments;
     }
 
     @Override
@@ -74,6 +69,16 @@ public class Song {
     @Override
     public int hashCode() {
         return Objects.hash(getId(), getSongTitle(), getDuration(), getAlbum());
+    }
+
+    @Override
+    public String toString() {
+        return "Song{" +
+                "id=" + id +
+                ", songTitle='" + songTitle + '\'' +
+                ", duration=" + duration +
+                ", album=" + album +
+                '}';
     }
 }
 

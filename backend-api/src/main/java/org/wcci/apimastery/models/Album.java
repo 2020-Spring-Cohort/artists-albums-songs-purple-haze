@@ -11,24 +11,27 @@ public class Album {
     @GeneratedValue
     private Long id;
 
-    public Artist getArtist() {
-        return artist;
-    }
 
     @ManyToOne
     private Artist artist;
 
     @OneToMany (mappedBy = "album")
     private Collection<Song> songs;
+    @OneToMany (mappedBy = "album")
+    private Collection<Comment> comments;
 
     private String albumTitle;
-//    private String recordLabel;
 
+//    private String recordLabel;
     protected Album(){}
 
     public Album(String albumTitle, Artist artist) {
         this.artist = artist;
         this.albumTitle = albumTitle;
+
+    }
+    public Artist getArtist() {
+        return artist;
     }
 
     public String getAlbumTitle() {
@@ -47,26 +50,32 @@ public class Album {
         return songs;
     }
 
+    public Collection<Comment> getComments() {
+        return comments;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Album album = (Album) o;
-
-        if (id != null ? !id.equals(album.id) : album.id != null) return false;
-        if (artist != null ? !artist.equals(album.artist) : album.artist != null) return false;
-        return albumTitle != null ? albumTitle.equals(album.albumTitle) : album.albumTitle == null;
+        return Objects.equals(id, album.id) &&
+                Objects.equals(artist, album.artist) &&
+                Objects.equals(albumTitle, album.albumTitle);
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (artist != null ? artist.hashCode() : 0);
-        result = 31 * result + (albumTitle != null ? albumTitle.hashCode() : 0);
-        return result;
+        return Objects.hash(id, artist, albumTitle);
     }
 
-
+    @Override
+    public String toString() {
+        return "Album{" +
+                "id=" + id +
+                ", artist=" + artist +
+                ", albumTitle='" + albumTitle + '\'' +
+                '}';
+    }
 }
 
