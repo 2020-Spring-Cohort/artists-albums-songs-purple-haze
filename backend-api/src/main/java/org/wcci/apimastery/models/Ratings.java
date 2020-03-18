@@ -5,22 +5,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-
 @Entity
-public class Review {
+public class Ratings {
     @Id
     @GeneratedValue
     private long id;
     @ManyToOne
     private Artist artist;
-    private String comment;
+    private int rating;
 
 
-    protected Review(){}
-
-    public Review(String comment, Artist artist){
-        this.comment = comment;
+    public Ratings() {
+    }
+    public Ratings(Artist artist, int rating) {
         this.artist = artist;
+        this.rating = rating;
     }
 
     public long getId() {
@@ -31,7 +30,7 @@ public class Review {
         return artist;
     }
 
-    public String getComment() {
-        return comment;
+    public int getRating() {
+        return rating;
     }
 }

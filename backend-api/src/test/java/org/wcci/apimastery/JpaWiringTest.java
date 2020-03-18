@@ -3,18 +3,13 @@ package org.wcci.apimastery;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jooq.AutoConfigureJooq;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.wcci.apimastery.models.Album;
 import org.wcci.apimastery.models.Artist;
-import org.wcci.apimastery.ArtistRepository;
-import org.wcci.apimastery.AlbumRepository;
-import org.wcci.apimastery.models.Review;
+import org.wcci.apimastery.models.Comment;
 import org.wcci.apimastery.models.Song;
 
-
-import java.util.Properties;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -28,14 +23,15 @@ public class JpaWiringTest {
     @Autowired
     private SongRepository songRepo;
     @Autowired
-    private ReviewRepository reviewRepo;
+    private CommentRepository commentRepo;
     @Autowired
     private TestEntityManager entityManager;
 
     private Artist testArtist;
     private Album testAlbum1;
     private Album testAlbum2;
-    private Review testReview;
+    private Comment testComment;
+    private Comment testComment2;
 
 
 
@@ -51,8 +47,10 @@ public class JpaWiringTest {
         albumRepo.save(testAlbum1);
         albumRepo.save(testAlbum2);
 
-        testReview = new Review("TestComment", testArtist);
-        reviewRepo.save(testReview);
+        testComment = new Comment("TestComment",testArtist);
+        commentRepo.save(testComment);
+        testComment2 = new Comment("TestComment2",testArtist);
+        commentRepo.save(testComment2);
    }
 
     @Test
@@ -99,13 +97,14 @@ public class JpaWiringTest {
 
     }
     @Test
-    public void artistShouldHaveReview(){
+    public void artistShouldHaveComments(){
         entityManager.flush();
         entityManager.clear();
 
         Artist retrievedArtist = artistRepo.findById(testArtist.getId()).get();
-        Review retrievedReview = reviewRepo.findById(testReview.getId()).get();
-        assertThat(retrievedArtist.getReviews()).contains(retrievedReview);
+        Comment retrievedComment = commentRepo.findById(testComment.getId()).get();
+        Comment retrievedComment2 = commentRepo.findById(testComment2.getId()).get();
+        assertThat(retrievedArtist.getComments()).contains(retrievedComment, retrievedComment2);
     }
 
 

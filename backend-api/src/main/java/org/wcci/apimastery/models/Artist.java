@@ -1,7 +1,6 @@
 package org.wcci.apimastery.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonSetter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +21,9 @@ public class Artist {
     private Collection<Album> albums;
 
     @OneToMany(mappedBy = "artist")
-    private Collection<Review> reviews;
+    private Collection<Comment> comments;
+
+
 
     private String name;
     private int birthDate;
@@ -72,8 +73,8 @@ public class Artist {
         return albums;
     }
 
-    public Collection<Review> getReviews() {
-        return reviews;
+    public Collection<Comment> getComments() {
+        return comments;
     }
 
     @Override
