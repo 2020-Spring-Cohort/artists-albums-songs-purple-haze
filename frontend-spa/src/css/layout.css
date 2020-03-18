@@ -166,7 +166,11 @@ input.review-comment{
 
 }
 
-.single-artist-review {
+
+.song-review-section{
+    margin-top: 80px;
+}
+.single-review {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     background-color: aliceblue;
