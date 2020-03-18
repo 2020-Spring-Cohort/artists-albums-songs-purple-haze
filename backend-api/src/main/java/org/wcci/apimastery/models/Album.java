@@ -1,5 +1,7 @@
 package org.wcci.apimastery.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
@@ -11,9 +13,6 @@ public class Album {
     @GeneratedValue
     private Long id;
 
-    public Artist getArtist() {
-        return artist;
-    }
 
     @ManyToOne
     private Artist artist;
@@ -22,13 +21,17 @@ public class Album {
     private Collection<Song> songs;
 
     private String albumTitle;
-//    private String recordLabel;
 
+//    private String recordLabel;
     protected Album(){}
 
     public Album(String albumTitle, Artist artist) {
         this.artist = artist;
         this.albumTitle = albumTitle;
+    }
+
+    public Artist getArtist() {
+        return artist;
     }
 
     public String getAlbumTitle() {

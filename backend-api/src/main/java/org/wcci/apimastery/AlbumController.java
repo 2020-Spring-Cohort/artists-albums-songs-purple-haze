@@ -1,6 +1,7 @@
 package org.wcci.apimastery;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.wcci.apimastery.models.Album;
