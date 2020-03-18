@@ -9,7 +9,7 @@ import javax.persistence.ManyToOne;
 public class Ratings {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     @ManyToOne
     private Artist artist;
     private int rating;
