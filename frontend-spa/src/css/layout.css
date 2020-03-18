@@ -72,6 +72,10 @@ footer {
     grid-template-rows: auto;
 }
 
+.song-list .spacer{
+    height: 100px;
+}
+
 .song-detail {
     display: grid;
     grid-template-columns: 1fr 1fr ;
@@ -86,7 +90,6 @@ footer {
 
 }
 
-
 .song-detail-info {
       margin-left: 40px;
 }
@@ -96,6 +99,43 @@ footer {
 .artist-detail{
 
 }
+
+.single-review-detail{
+    background-color: aliceblue;
+    padding: 10px;
+}
+
+.review-comment{
+    grid-column: 2/5;
+
+}
+
+.single-review-add {
+    padding: 10px;
+}
+input.review-comment{
+    min-height: 40px;
+    grid-column: 2/4;
+
+}
+
+.thumb {
+    display: inline;
+    border-radius: 10px;
+}
+
+.thumbsup{
+
+    color: white;
+    background-color: green;
+    padding: 5px;
+}
+.thumbsdown{
+    color: white;
+    background-color: red;
+    padding: 5px;
+}
+
 
 .album-list{
     display: grid;
@@ -108,11 +148,38 @@ footer {
 }
 .artist-detail-info{
     display: grid;
-    grid-template-columns: 20% 80% ;
+    grid-template-columns: 1fr 1fr ;
     justify-content: space-around;
     padding:100px;
     max-height: 200px;
 }
+
+.artist-detail-data{
+    text-align: left;
+    margin: 15px;
+    padding: 0;
+    line-height: 2em;
+}
+
+.artist-review-section {
+    grid-column: 1/5;
+
+}
+
+.single-artist-review {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: aliceblue;
+}
+.add-artist-review {
+    display: grid;
+     grid-template-columns: repeat(4, 1fr);
+}
+
+.artist-thumbs-section{
+    grid-column: 2/5;
+}
+
 .single-album{
    
 }
