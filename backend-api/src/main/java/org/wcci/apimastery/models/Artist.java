@@ -15,9 +15,14 @@ public class Artist {
     @Id
     @GeneratedValue
     private Long id;
+
     @JsonIgnore
+
     @OneToMany(mappedBy = "artist")
     private Collection<Album> albums;
+
+    @OneToMany(mappedBy = "artist")
+    private Collection<Review> reviews;
 
     private String name;
     private int birthDate;
@@ -65,6 +70,10 @@ public class Artist {
 
     public Collection<Album> getAlbums() {
         return albums;
+    }
+
+    public Collection<Review> getReviews() {
+        return reviews;
     }
 
     @Override

@@ -3,12 +3,14 @@ package org.wcci.apimastery;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jooq.AutoConfigureJooq;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.wcci.apimastery.models.Album;
 import org.wcci.apimastery.models.Artist;
 import org.wcci.apimastery.ArtistRepository;
 import org.wcci.apimastery.AlbumRepository;
+import org.wcci.apimastery.models.Review;
 import org.wcci.apimastery.models.Song;
 
 
@@ -24,13 +26,16 @@ public class JpaWiringTest {
     @Autowired
     private AlbumRepository albumRepo;
     @Autowired
-    private TestEntityManager entityManager;
-    @Autowired
     private SongRepository songRepo;
+    @Autowired
+    private ReviewRepository reviewRepo;
+    @Autowired
+    private TestEntityManager entityManager;
 
     private Artist testArtist;
     private Album testAlbum1;
     private Album testAlbum2;
+    private Review testReview;
 
 
 
@@ -46,6 +51,8 @@ public class JpaWiringTest {
         albumRepo.save(testAlbum1);
         albumRepo.save(testAlbum2);
 
+        testReview = new Review("TestComment", testArtist);
+        reviewRepo.save(testReview);
    }
 
     @Test
@@ -91,7 +98,15 @@ public class JpaWiringTest {
         assertThat(testArtist.getRecordLabel()).isEqualTo("Atlantic");
 
     }
+    @Test
+    public void artistShouldHaveReview(){
+        entityManager.flush();
+        entityManager.clear();
 
+        Artist retrievedArtist = artistRepo.findById(testArtist.getId()).get();
+        Review retrievedReview = reviewRepo.findById(testReview.getId()).get();
+        assertThat(retrievedArtist.getReviews()).contains(retrievedReview);
+    }
 
 
 
