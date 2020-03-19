@@ -24,3 +24,18 @@ body{
 .artist-picture{
     border-radius: 100%;
 }
+
+.num-thumbs-up {
+    font-weight: 800;
+    display: initial;
+}
+
+.num-thumbs-down {
+    font-weight: 800;
+    display: initial;
+}
+
+.submit-review-comment {
+    background-color: orange;
+    font-size: 1.5em;
+}
