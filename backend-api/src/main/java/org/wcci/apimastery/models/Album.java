@@ -1,5 +1,8 @@
 package org.wcci.apimastery.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
@@ -12,10 +15,11 @@ public class Album {
     @GeneratedValue
     private Long id;
 
-
+    @JsonIgnore
     @ManyToOne
     private Artist artist;
 
+    @JsonIgnore
     @OneToMany (mappedBy = "album")
     private Collection<Song> songs;
 
