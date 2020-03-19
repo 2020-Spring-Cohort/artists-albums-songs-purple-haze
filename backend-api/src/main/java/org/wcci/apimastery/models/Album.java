@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Objects;
 
 @Entity
@@ -21,20 +22,26 @@ public class Album {
     @JsonIgnore
     @OneToMany (mappedBy = "album")
     private Collection<Song> songs;
-    @JsonIgnore
+
     @OneToMany (mappedBy = "album")
     private Collection<Comment> comments;
 
+    @OneToOne
+    private Ratings ratings;
+
     private String albumTitle;
 
-//    private String recordLabel;
+
+    //    private String recordLabel;
     protected Album(){}
 
     public Album(String albumTitle, Artist artist) {
         this.artist = artist;
         this.albumTitle = albumTitle;
-
+        this.comments = new HashSet<>();
+        this.ratings = new Ratings();
     }
+
     public Artist getArtist() {
         return artist;
     }
@@ -81,6 +88,18 @@ public class Album {
                 ", artist=" + artist +
                 ", albumTitle='" + albumTitle + '\'' +
                 '}';
+    }
+
+    public void addCommentToArtist(Comment commentToAdd) {
+        comments.add(commentToAdd);
+    }
+
+    public void addGoodRating() {
+        ratings.addGoodRating();
+    }
+
+    public Ratings getRatings() {
+        return ratings;
     }
 }
 

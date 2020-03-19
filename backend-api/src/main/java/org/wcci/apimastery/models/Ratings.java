@@ -1,36 +1,53 @@
 package org.wcci.apimastery.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class Ratings {
     @Id
     @GeneratedValue
     private Long id;
-    @ManyToOne
-    private Artist artist;
-    private int rating;
 
+    @OneToOne
+    private Artist artist;
+
+    @ManyToOne
+    private Song song;
+
+    @ManyToOne
+    private Album album;
+
+    private int goodRating = 0;
+
+    private int badRating = 0;
 
     public Ratings() {
     }
-    public Ratings(Artist artist, int rating) {
-        this.artist = artist;
-        this.rating = rating;
+
+    public Ratings(int goodRating, int badRating) {
+        this.goodRating = goodRating;
+        this.badRating = badRating;
+    }
+    public void addBadRating(){
+        badRating++;
+    }
+
+    public void addGoodRating(){
+        this.goodRating++;
+        System.out.println(goodRating);
+    }
+
+    public int getGoodRating() {
+        return goodRating;
+    }
+
+    public int getBadRating() {
+        return badRating;
     }
 
     public long getId() {
         return id;
     }
 
-    public Artist getArtist() {
-        return artist;
-    }
 
-    public int getRating() {
-        return rating;
-    }
 }
