@@ -12,6 +12,7 @@ public class Comment {
     @Id
     @GeneratedValue
     private Long id;
+
     @ManyToOne
     private Artist artist;
     @ManyToOne
@@ -24,29 +25,15 @@ public class Comment {
 
     protected Comment(){}
 
-    public Comment(String commenterName, String commentContent , Artist artist, Album album, Song song){
+    public Comment(String commenterName, String commentContent ){
         this.commenterName = commenterName;
         this.commentContent = commentContent;
-        this.artist = artist;
-        this.album = album;
-        this.song = song;
     }
 
     public Long getId() {
         return id;
     }
 
-    public Artist getArtist() {
-        return artist;
-    }
-
-    public Album getAlbum() {
-        return album;
-    }
-
-    public Song getSong() {
-        return song;
-    }
 
     public String getCommenterName() {
         return commenterName;
@@ -59,28 +46,28 @@ public class Comment {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Comment)) return false;
+
         Comment comment = (Comment) o;
-        return id == comment.id &&
-                Objects.equals(artist, comment.artist) &&
-                Objects.equals(album, comment.album) &&
-                Objects.equals(song, comment.song) &&
-                Objects.equals(commenterName, comment.commenterName) &&
-                Objects.equals(commentContent, comment.commentContent);
+
+        if (getId() != null ? !getId().equals(comment.getId()) : comment.getId() != null) return false;
+        if (getCommenterName() != null ? !getCommenterName().equals(comment.getCommenterName()) : comment.getCommenterName() != null)
+            return false;
+        return getCommentContent() != null ? getCommentContent().equals(comment.getCommentContent()) : comment.getCommentContent() == null;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, artist, album, song, commenterName, commentContent);
+        int result = getId() != null ? getId().hashCode() : 0;
+        result = 31 * result + (getCommenterName() != null ? getCommenterName().hashCode() : 0);
+        result = 31 * result + (getCommentContent() != null ? getCommentContent().hashCode() : 0);
+        return result;
     }
 
     @Override
     public String toString() {
         return "Comment{" +
                 "id=" + id +
-                ", artist=" + artist +
-                ", album=" + album +
-                ", song=" + song +
                 ", commenterName='" + commenterName + '\'' +
                 ", commentContent='" + commentContent + '\'' +
                 '}';

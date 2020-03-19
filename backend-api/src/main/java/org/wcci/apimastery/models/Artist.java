@@ -7,7 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Artist {
@@ -20,7 +22,7 @@ public class Artist {
     @OneToMany(mappedBy = "artist")
     private Collection<Album> albums;
 
-    @OneToMany(mappedBy = "artist")
+    @OneToMany (mappedBy = "artist")
     private Collection<Comment> comments;
 
 
@@ -34,6 +36,7 @@ public class Artist {
 
     public Artist(String name){
         this.name= name;
+        this.comments = new HashSet<>();
     }
 
     public Long getId() {
@@ -90,4 +93,10 @@ public class Artist {
     public int hashCode() {
         return Objects.hash(id, name);
     }
+
+    public void addCommentToArtist(Comment comment) {
+        comments.add(comment);
+    }
+
+
 }

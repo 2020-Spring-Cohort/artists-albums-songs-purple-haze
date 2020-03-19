@@ -2,6 +2,7 @@ package org.wcci.apimastery.models;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Objects;
 
 
@@ -33,6 +34,7 @@ public class Song {
     public Song(String songTitle, Album album){
         this.songTitle = songTitle;
         this.album = album;
+        this.comments = new HashSet<>();
     }
 
     public Song(){}
@@ -79,6 +81,10 @@ public class Song {
                 ", duration=" + duration +
                 ", album=" + album +
                 '}';
+    }
+
+    public void addCommentToSong(Comment commentToAdd) {
+        comments.add(commentToAdd);
     }
 }
 

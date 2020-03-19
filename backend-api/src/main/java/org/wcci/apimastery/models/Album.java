@@ -2,6 +2,7 @@ package org.wcci.apimastery.models;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Objects;
 
 @Entity
@@ -17,6 +18,7 @@ public class Album {
 
     @OneToMany (mappedBy = "album")
     private Collection<Song> songs;
+
     @OneToMany (mappedBy = "album")
     private Collection<Comment> comments;
 
@@ -28,6 +30,7 @@ public class Album {
     public Album(String albumTitle, Artist artist) {
         this.artist = artist;
         this.albumTitle = albumTitle;
+        this.comments = new HashSet<>();
 
     }
     public Artist getArtist() {
@@ -76,6 +79,10 @@ public class Album {
                 ", artist=" + artist +
                 ", albumTitle='" + albumTitle + '\'' +
                 '}';
+    }
+
+    public void addCommentToArtist(Comment commentToAdd) {
+        comments.add(commentToAdd);
     }
 }
 

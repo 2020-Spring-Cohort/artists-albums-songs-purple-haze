@@ -52,9 +52,9 @@ public class JpaWiringTest {
         songRepo.save(testSong2);
         albumRepo.save(testAlbum1);
 
-        testComment = new Comment("commenter name","Comment body", testArtist, testAlbum1, testSong1);
+        testComment = new Comment("commenter name","Comment body");
         commentRepo.save(testComment);
-        testComment2 = new Comment("commenter name", "CommentBody" , testArtist, testAlbum1, testSong1);
+        testComment2 = new Comment("commenter name", "CommentBody");
         commentRepo.save(testComment2);
    }
 
@@ -94,33 +94,46 @@ public class JpaWiringTest {
     }
     @Test
     public void artistShouldHaveComments(){
+        testArtist.addCommentToArtist(testComment);
+        testArtist.addCommentToArtist(testComment2);
+        artistRepo.save(testArtist);
+        commentRepo.save(testComment);
+        commentRepo.save(testComment2);
         entityManager.flush();
         entityManager.clear();
 
-        Artist retrievedArtist = artistRepo.findById(testArtist.getId()).get();
-        Comment retrievedComment = commentRepo.findById(testComment.getId()).get();
-        Comment retrievedComment2 = commentRepo.findById(testComment2.getId()).get();
-        assertThat(retrievedArtist.getComments()).contains(retrievedComment, retrievedComment2);
+        assertThat(testArtist.getComments()).contains(testComment, testComment2);
     }
     @Test
     public void albumShouldHaveComments(){
+        testAlbum1.addCommentToArtist(testComment);
+        testAlbum1.addCommentToArtist(testComment2);
+
+        albumRepo.save(testAlbum1);
+        commentRepo.save(testComment);
+        commentRepo.save(testComment2);
+
         entityManager.flush();
         entityManager.clear();
 
-        Album retrievedAlbum = albumRepo.findById(testAlbum1.getId()).get();
-        Comment retrievedComment = commentRepo.findById(testComment.getId()).get();
-        Comment retrievedComment2 = commentRepo.findById(testComment2.getId()).get();
-        assertThat(retrievedAlbum.getComments()).contains(retrievedComment, retrievedComment2);
+//        Album retrievedAlbum = albumRepo.findById(testAlbum1.getId()).get();
+//        Comment retrievedComment = commentRepo.findById(testComment.getId()).get();
+//        Comment retrievedComment2 = commentRepo.findById(testComment2.getId()).get();
+        assertThat(testAlbum1.getComments()).contains(testComment, testComment2);
     }
     @Test
     public void songsShouldHaveComments(){
+        testSong1.addCommentToSong(testComment);
+        testSong1.addCommentToSong(testComment2);
+
+        songRepo.save(testSong1);
+        commentRepo.save(testComment);
+        commentRepo.save(testComment2);
+
         entityManager.flush();
         entityManager.clear();
 
-        Song retrievedSong = songRepo.findById(testSong1.getId()).get();
-        Comment retrievedComment = commentRepo.findById(testComment.getId()).get();
-        Comment retrievedComment2 = commentRepo.findById(testComment2.getId()).get();
-        assertThat(retrievedSong.getComments()).contains(retrievedComment, retrievedComment2);
+        assertThat(testSong1.getComments()).contains(testComment, testComment2);
     }
 
 
