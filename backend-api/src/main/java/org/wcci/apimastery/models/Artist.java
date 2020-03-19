@@ -2,10 +2,7 @@ package org.wcci.apimastery.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
@@ -25,7 +22,16 @@ public class Artist {
     @OneToMany (mappedBy = "artist")
     private Collection<Comment> comments;
 
+    @OneToOne
+    private Ratings ratings;
 
+    public void addGoodRating(){
+        ratings.addGoodRating();
+    }
+
+    public void addBadRating(){
+        ratings.addBadRating();
+    }
 
     private String name;
     private int birthDate;
@@ -37,6 +43,7 @@ public class Artist {
     public Artist(String name){
         this.name= name;
         this.comments = new HashSet<>();
+        this.ratings = new Ratings();
     }
 
     public Long getId() {
@@ -99,4 +106,7 @@ public class Artist {
     }
 
 
+    public Ratings getRatings() {
+        return ratings;
+    }
 }

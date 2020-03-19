@@ -5,10 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.wcci.apimastery.models.Album;
-import org.wcci.apimastery.models.Artist;
-import org.wcci.apimastery.models.Comment;
-import org.wcci.apimastery.models.Song;
+import org.wcci.apimastery.models.*;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -136,6 +133,26 @@ public class JpaWiringTest {
         assertThat(testSong1.getComments()).contains(testComment, testComment2);
     }
 
+    @Test
+    public void artistCanAddGoodRatingAndBadRating(){
+        testArtist.addGoodRating();
+        Ratings ratingsToTest = testArtist.getRatings();
+        assertThat(ratingsToTest.getGoodRating()).isEqualTo(1);
+    }
+
+    @Test
+    public void songCanHaveGoodRatings(){
+        testSong1.addGoodRating();
+        Ratings ratingsToTest = testSong1.getRatings();
+        assertThat(ratingsToTest.getGoodRating()).isEqualTo(1);
+    }
+
+    @Test
+    public void albumCanHaveRatings(){
+        testAlbum1.addGoodRating();
+        Ratings ratingsToTest = testAlbum1.getRatings();
+        assertThat(ratingsToTest.getGoodRating()).isEqualTo(1);
+    }
 
 
 }

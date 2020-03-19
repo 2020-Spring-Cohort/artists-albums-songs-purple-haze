@@ -26,15 +26,30 @@ public class Song {
         return album;
     }
 
+
     @ManyToOne
     private Album album;
 
     @OneToMany (mappedBy = "song")
     private Collection<Comment> comments;
+
+    @OneToOne
+    private Ratings ratings;
+
+
     public Song(String songTitle, Album album){
         this.songTitle = songTitle;
         this.album = album;
         this.comments = new HashSet<>();
+        this.ratings = new Ratings();
+    }
+
+    public void addGoodRating() {
+        ratings.addGoodRating();
+    }
+
+    public void addBadRating() {
+        ratings.addBadRating();
     }
 
     public Song(){}
@@ -50,8 +65,6 @@ public class Song {
     public Long getDuration() {
         return duration;
     }
-
-
 
     public Collection<Comment> getComments() {
         return comments;
@@ -85,6 +98,10 @@ public class Song {
 
     public void addCommentToSong(Comment commentToAdd) {
         comments.add(commentToAdd);
+    }
+
+    public Ratings getRatings() {
+        return ratings;
     }
 }
 

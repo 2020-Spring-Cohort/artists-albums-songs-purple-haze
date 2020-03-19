@@ -22,17 +22,22 @@ public class Album {
     @OneToMany (mappedBy = "album")
     private Collection<Comment> comments;
 
+    @OneToOne
+    private Ratings ratings;
+
     private String albumTitle;
 
-//    private String recordLabel;
+
+    //    private String recordLabel;
     protected Album(){}
 
     public Album(String albumTitle, Artist artist) {
         this.artist = artist;
         this.albumTitle = albumTitle;
         this.comments = new HashSet<>();
-
+        this.ratings = new Ratings();
     }
+
     public Artist getArtist() {
         return artist;
     }
@@ -83,6 +88,14 @@ public class Album {
 
     public void addCommentToArtist(Comment commentToAdd) {
         comments.add(commentToAdd);
+    }
+
+    public void addGoodRating() {
+        ratings.addGoodRating();
+    }
+
+    public Ratings getRatings() {
+        return ratings;
     }
 }
 
