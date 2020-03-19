@@ -16,10 +16,10 @@ public class Artist {
     private Long id;
 
     @JsonIgnore
-
     @OneToMany(mappedBy = "artist")
     private Collection<Album> albums;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "artist")
     private Collection<Comment> comments;
 
