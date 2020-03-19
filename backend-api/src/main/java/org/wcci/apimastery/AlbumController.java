@@ -2,10 +2,7 @@ package org.wcci.apimastery;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.wcci.apimastery.models.Album;
 
 import java.util.Collection;
@@ -27,5 +24,10 @@ public class AlbumController {
     @GetMapping("/albums/{id}")
     public Album retrievedAlbums(@PathVariable Long id) {
         return albumRepository.findById(id).get();
+    }
+
+    @PostMapping("/albums")
+    public Album createAlbum(@RequestBody Album albumToAdd) {
+        return albumRepository.save(albumToAdd);
     }
 }

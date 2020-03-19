@@ -1,5 +1,7 @@
 package org.wcci.apimastery.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
@@ -25,9 +27,10 @@ public class Song {
         return album;
     }
 
+    @JsonIgnore
     @ManyToOne
     private Album album;
-
+    @JsonIgnore
     @OneToMany (mappedBy = "song")
     private Collection<Comment> comments;
     public Song(String songTitle, Album album){
