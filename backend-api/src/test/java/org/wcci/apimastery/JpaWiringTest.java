@@ -110,12 +110,6 @@ public class JpaWiringTest {
         commentRepo.save(testComment);
         commentRepo.save(testComment2);
 
-        entityManager.flush();
-        entityManager.clear();
-
-//        Album retrievedAlbum = albumRepo.findById(testAlbum1.getId()).get();
-//        Comment retrievedComment = commentRepo.findById(testComment.getId()).get();
-//        Comment retrievedComment2 = commentRepo.findById(testComment2.getId()).get();
         assertThat(testAlbum1.getComments()).contains(testComment, testComment2);
     }
     @Test

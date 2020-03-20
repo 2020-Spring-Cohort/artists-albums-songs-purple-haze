@@ -32,11 +32,12 @@ public class Song {
     @JsonIgnore
     @ManyToOne
     private Album album;
+
     @JsonIgnore
     @OneToMany (mappedBy = "song")
     private Collection<Comment> comments;
 
-    @OneToOne
+    @OneToOne (cascade = {CascadeType.ALL})
     private Ratings ratings;
 
 

@@ -19,14 +19,13 @@ public class Artist {
     private Collection<Album> albums;
 
 
-    @OneToMany (mappedBy = "artist")
 
-    @JsonIgnore
+
+   // @JsonIgnore
     @OneToMany(mappedBy = "artist")
-
     private Collection<Comment> comments;
 
-    @OneToOne
+    @OneToOne (cascade = {CascadeType.ALL})
     private Ratings ratings;
 
     public void addGoodRating(){
