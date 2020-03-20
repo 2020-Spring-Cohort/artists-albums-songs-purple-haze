@@ -26,7 +26,7 @@ public class Album {
     @OneToMany (mappedBy = "album")
     private Collection<Comment> comments;
 
-    @OneToOne
+    @OneToOne (cascade = {CascadeType.ALL})
     private Ratings ratings;
 
     private String albumTitle;

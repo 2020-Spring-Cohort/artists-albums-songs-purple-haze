@@ -16,6 +16,10 @@ public class Populator implements CommandLineRunner {
     AlbumRepository albumRepo;
     @Autowired
     SongRepository songRepo;
+    @Autowired
+    CommentRepository comRepo;
+    @Autowired
+    RatingsRepository ratingRepo;
 
 
     @Override
@@ -63,5 +67,12 @@ public class Populator implements CommandLineRunner {
         songRepo.save(bulldog);
         Song rigby = new Song("Eleanor Rigby", submarine);
         songRepo.save(rigby);
+        albumRepo.save(axis);
+        albumRepo.save(submarine);
+        albumRepo.save(abbey);
+        albumRepo.save(electricLadyLand);
+
+
+
     }
 }

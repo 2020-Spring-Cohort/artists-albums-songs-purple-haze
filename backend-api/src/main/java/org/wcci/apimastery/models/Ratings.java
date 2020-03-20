@@ -11,10 +11,10 @@ public class Ratings {
     @OneToOne
     private Artist artist;
 
-    @ManyToOne
+    @OneToOne
     private Song song;
 
-    @ManyToOne
+    @OneToOne
     private Album album;
 
     private int goodRating = 0;
