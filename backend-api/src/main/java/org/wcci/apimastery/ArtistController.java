@@ -28,8 +28,9 @@ public class ArtistController {
     public Artist retrieveSingleArtist(@PathVariable Long id) {
         return artistRepository.findById(id).get();
     }
+
     @PatchMapping("/artists/{id}/albums")
-    public Artist updateArtistProducts(@PathVariable Long id, @RequestBody String requestBodyAlbum) {
+    public Artist updateArtistAlbums(@PathVariable Long id, @RequestBody String requestBodyAlbum) {
         Artist artistToPatch = artistRepository.findById(id).get();
         Album albumToAdd = new Album(requestBodyAlbum, artistToPatch);
         albumRepository.save(albumToAdd);
