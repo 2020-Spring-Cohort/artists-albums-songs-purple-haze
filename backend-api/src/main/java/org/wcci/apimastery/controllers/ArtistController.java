@@ -68,22 +68,17 @@ public class ArtistController {
         return artistRepository.save(artistToAddCommentTo);
     }
 
-    @DeleteMapping("/artist/")
-    public void deleteArtist( @RequestBody Artist artistToDelete) {
-//        Artist artistToDelete = artistRepository.findById(id).get();
+    // TODO get this to actually work
 
-//        for (Album albumToDelete : artistToDelete.getAlbums()) {
-//
-//            for (Song songToDelete : albumToDelete.getSongs()) {
-//                songRepository.delete(songToDelete);
-//            }
-//
-//            albumRepository.delete(albumToDelete);
-//        }
-
+    @DeleteMapping("/artist/{id}")
+    public void deleteArtist(@PathVariable Long id) {
+        Artist artistToDelete = artistRepository.findById(id).get();
+        for (Album albumToDelete : artistToDelete.getAlbums()) {
+            for (Song songToDelete : albumToDelete.getSongs()) {
+                songRepository.delete(songToDelete);
+            }
+            albumRepository.delete(albumToDelete);
+        }
         artistRepository.delete(artistToDelete);
     }
-
-
-
 }
