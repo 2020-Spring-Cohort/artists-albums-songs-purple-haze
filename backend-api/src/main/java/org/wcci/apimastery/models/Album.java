@@ -23,7 +23,7 @@ public class Album {
     @OneToMany (mappedBy = "album")
     private Collection<Song> songs;
 
-    @OneToMany (mappedBy = "album")
+    @OneToMany
     private Collection<Comment> comments;
 
     @OneToOne (cascade = {CascadeType.ALL})
