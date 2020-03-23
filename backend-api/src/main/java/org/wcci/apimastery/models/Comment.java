@@ -13,12 +13,7 @@ public class Comment {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne
-    private Artist artist;
-    @ManyToOne
-    private Album album;
-    @ManyToOne
-    private Song song;
+
 
     private String commenterName;
     private String commentContent;

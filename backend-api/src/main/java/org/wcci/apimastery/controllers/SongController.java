@@ -2,22 +2,21 @@ package org.wcci.apimastery.controllers;
 
 
 import org.springframework.web.bind.annotation.*;
-import org.wcci.apimastery.models.Album;
-import org.wcci.apimastery.models.Artist;
-import org.wcci.apimastery.repos.AlbumRepository;
+import org.wcci.apimastery.models.Comment;
+import org.wcci.apimastery.repos.CommentRepository;
 import org.wcci.apimastery.repos.SongRepository;
 import org.wcci.apimastery.models.Song;
 
 import java.util.Collection;
-import java.util.Properties;
 
 @RestController
 public class SongController {
     private SongRepository songRepository;
-    private AlbumRepository albumRepository;
+    private CommentRepository commentRepository;
 
-    public SongController(SongRepository songRepository) {
+    public SongController(SongRepository songRepository, CommentRepository commentRepository) {
         this.songRepository = songRepository;
+        this.commentRepository = commentRepository;
 
     }
 
@@ -27,7 +26,7 @@ public class SongController {
 //
 //    }
 
-    @GetMapping("/songs/")
+    @GetMapping("/songs")
     public Collection<Song> retrievedSongs() {
         return (Collection<Song>) songRepository.findAll();
     }
@@ -37,22 +36,27 @@ public class SongController {
         return songRepository.findById(id).get();
     }
 
+    @PostMapping("/songs")
+    public Song createSong(@RequestBody Song songToAdd) {
+        return songRepository.save(songToAdd);
+    }
 
-//    @PatchMapping("/songs/")
-//    public Song updateAlbumsWithSongs(@RequestBody Song requestBodySong) {
-//        Album albumToPatch = albumRepository.findById(id).get();
-//        Song songToAdd = new Song(requestBodySong.getSongTitle(), albumToPatch);
-//        songRepository.save(songToAdd);
-//        albumRepository.save(albumToPatch);
-//        return songToAdd;
-//    }
-//    @PatchMapping("/artists/{id}")
-//    public Artist updateArtistAlbums(@PathVariable Long id, @RequestBody Album requestBodyAlbum) {
-//        Artist artistToPatch = artistRepository.findById(id).get();
-//        Album albumToAdd = new Album(requestBodyAlbum.getAlbumTitle(), artistToPatch);
-//        albumRepository.save(albumToAdd);
-//        return artistRepository.save(artistToPatch);
-//    }
+    @DeleteMapping("/songs/{id}")
+    public void songToDelete(@PathVariable Long id) {
+        Song songToDelete = songRepository.findById(id).get();
+        songRepository.deleteById(id);
+    }
+
+    @PatchMapping("songs/{id}/add-comment")
+    public Song addCommentToSong(@RequestBody Comment commentToPatch, @PathVariable Long id) {
+        Song songToAddCommentTo = songRepository.findById(id).get();
+        Comment addedComment = new Comment(commentToPatch.getCommenterName(), commentToPatch.getCommentContent());
+        songToAddCommentTo.addCommentToSong(addedComment);
+        commentRepository.save(addedComment);
+        return songRepository.save(songToAddCommentTo);
+    }
+
+
 
 
 
