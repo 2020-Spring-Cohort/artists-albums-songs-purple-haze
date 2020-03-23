@@ -19,7 +19,7 @@ public class Album {
     @ManyToOne
     private Artist artist;
 
-    @JsonIgnore
+
     @OneToMany (mappedBy = "album")
     private Collection<Song> songs;
 
