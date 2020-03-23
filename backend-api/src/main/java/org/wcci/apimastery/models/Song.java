@@ -34,7 +34,7 @@ public class Song {
     private Album album;
 
     @JsonIgnore
-    @OneToMany (mappedBy = "song")
+    @OneToMany
     private Collection<Comment> comments;
 
     @OneToOne (cascade = {CascadeType.ALL})

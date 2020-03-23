@@ -16,7 +16,7 @@ public class Artist {
     private Collection<Album> albums;
 
    // @JsonIgnore
-    @OneToMany(mappedBy = "artist")
+    @OneToMany
     private Collection<Comment> comments;
 
     @OneToOne (cascade = {CascadeType.ALL})
