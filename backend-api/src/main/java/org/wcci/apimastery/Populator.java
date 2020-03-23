@@ -6,7 +6,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.wcci.apimastery.models.Album;
 import org.wcci.apimastery.models.Artist;
+import org.wcci.apimastery.models.Comment;
 import org.wcci.apimastery.models.Song;
+import org.wcci.apimastery.repos.*;
 
 @Component
 public class Populator implements CommandLineRunner {
@@ -71,6 +73,15 @@ public class Populator implements CommandLineRunner {
         albumRepo.save(submarine);
         albumRepo.save(abbey);
         albumRepo.save(electricLadyLand);
+
+
+        Comment jimiComment = new Comment("Hello World","This is a comment");
+        comRepo.save(jimiComment);
+
+        hendrix.addCommentToArtist(jimiComment);
+        artistRepo.save(hendrix);
+
+
 
 
 

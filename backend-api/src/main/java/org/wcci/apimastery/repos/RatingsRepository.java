@@ -1,4 +1,4 @@
-package org.wcci.apimastery;
+package org.wcci.apimastery.repos;
 
 
 import org.springframework.data.repository.CrudRepository;
