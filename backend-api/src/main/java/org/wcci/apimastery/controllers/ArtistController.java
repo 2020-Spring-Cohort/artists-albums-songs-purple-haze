@@ -50,7 +50,7 @@ public class ArtistController {
     //CreateArtist
     @PostMapping("/artists")
     public Artist createArtist(@RequestBody Artist artistToAdd) {
-        return artistRepository.save(artistToAdd);
+    return artistRepository.save(artistToAdd);
     }
 
 
