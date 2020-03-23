@@ -29,10 +29,10 @@ public class ArtistController {
         return artistRepository.findById(id).get();
     }
 
-    @PatchMapping("/artists/{id}/albums")
-    public Artist updateArtistAlbums(@PathVariable Long id, @RequestBody String requestBodyAlbum) {
+    @PatchMapping("/artists/{id}")
+    public Artist updateArtistAlbums(@PathVariable Long id, @RequestBody Album requestBodyAlbum) {
         Artist artistToPatch = artistRepository.findById(id).get();
-        Album albumToAdd = new Album(requestBodyAlbum, artistToPatch);
+        Album albumToAdd = new Album(requestBodyAlbum.getAlbumTitle(), artistToPatch);
         albumRepository.save(albumToAdd);
         return artistRepository.save(artistToPatch);
     }

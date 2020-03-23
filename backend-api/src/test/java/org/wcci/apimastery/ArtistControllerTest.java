@@ -15,6 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 public class ArtistControllerTest {
 
+    private AlbumRepository albumRepository;
     private ArtistRepository artistRepository;
     private ArtistController underTest;
     private Artist testArtist;
@@ -23,7 +24,8 @@ public class ArtistControllerTest {
     @Test
     public void retreivedArtistsReturnsAListOfArtistsFromMockRepo(){
         artistRepository = mock(ArtistRepository.class);
-        ArtistController underTest = new ArtistController(artistRepository);
+        albumRepository = mock(AlbumRepository.class);
+        ArtistController underTest = new ArtistController(artistRepository, albumRepository);
         Artist testArtist = new Artist("MJ");
         when(artistRepository.findAll()).thenReturn(Collections.singletonList(testArtist));
         Collection<Artist> result = underTest.retrieveArtists();
@@ -34,7 +36,7 @@ public class ArtistControllerTest {
     @Test
     public void retrieveArtistReturnsListOfArtistsContainingMockArtists(){
         artistRepository = mock(ArtistRepository.class);
-        ArtistController underTest = new ArtistController(artistRepository);
+        ArtistController underTest = new ArtistController(artistRepository, albumRepository);
         Artist testArtist = new Artist("MJ");
         when(artistRepository.findAll()).thenReturn(Collections.singletonList(testArtist));
         Collection<Artist> result = underTest.retrieveArtists();
@@ -44,7 +46,7 @@ public class ArtistControllerTest {
     @Test
     public void underTestIsWiredCorrectlyWithAnnotation() throws Exception {
         artistRepository = mock(ArtistRepository.class);
-        ArtistController underTest = new ArtistController(artistRepository);
+        ArtistController underTest = new ArtistController(artistRepository, albumRepository);
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(underTest).build();
         mockMvc.perform(get("/artists")).andExpect(status().isOk());
     }

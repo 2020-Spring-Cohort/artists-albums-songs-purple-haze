@@ -14,7 +14,7 @@ public class Artist {
     @GeneratedValue
     private Long id;
 
-    @JsonIgnore
+//    @JsonIgnore
     @OneToMany(mappedBy = "artist")
     private Collection<Album> albums;
 
