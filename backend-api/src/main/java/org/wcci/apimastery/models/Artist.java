@@ -3,10 +3,7 @@ package org.wcci.apimastery.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Artist {
@@ -14,12 +11,9 @@ public class Artist {
     @GeneratedValue
     private Long id;
 
-    @JsonIgnore
+//    @JsonIgnore
     @OneToMany(mappedBy = "artist")
     private Collection<Album> albums;
-
-
-
 
    // @JsonIgnore
     @OneToMany(mappedBy = "artist")
@@ -45,7 +39,7 @@ public class Artist {
 
     public Artist(String name){
         this.name= name;
-        this.comments = new HashSet<>();
+        this.comments = new ArrayList<>();
         this.ratings = new Ratings();
     }
 
@@ -87,7 +81,7 @@ public class Artist {
     }
 
     public Collection<Comment> getComments() {
-        return comments;
+        return (Collection<Comment>) comments;
     }
 
     @Override

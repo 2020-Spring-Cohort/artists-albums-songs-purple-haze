@@ -2,24 +2,20 @@ package org.wcci.apimastery;
 
 
 import org.junit.jupiter.api.Test;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MockMvcBuilder;
 
 import static org.hamcrest.Matchers.is;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.wcci.apimastery.models.Album;
 import org.wcci.apimastery.models.Artist;
 import org.wcci.apimastery.models.Song;
-import org.wcci.apimastery.models.SongController;
+import org.wcci.apimastery.controllers.SongController;
+import org.wcci.apimastery.repos.SongRepository;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;

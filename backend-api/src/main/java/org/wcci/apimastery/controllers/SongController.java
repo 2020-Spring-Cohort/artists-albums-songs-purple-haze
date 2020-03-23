@@ -1,9 +1,9 @@
-package org.wcci.apimastery.models;
+package org.wcci.apimastery.controllers;
 
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.wcci.apimastery.SongRepository;
+import org.wcci.apimastery.repos.SongRepository;
+import org.wcci.apimastery.models.Song;
 
 import java.util.Collection;
 
