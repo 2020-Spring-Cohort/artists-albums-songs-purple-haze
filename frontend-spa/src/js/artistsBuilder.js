@@ -13,6 +13,7 @@ artistPic.classList.add('artist-picture');
 const artistName = document.createElement("H3");
 artistName.classList.add('artist-name');
 artistName.innerHTML = artist.name;
+// artistName.addEventListener('onclick', displaysingleartist(artist.id))
 
 const artistLabel = document.createElement('H4');
 artistLabel.classList.add('artist-label');
@@ -27,7 +28,7 @@ singleArtist.appendChild(artistLabel);
 
 
 const fetchArtists = () => {
-    fetch('http://localhost:8080/artists')
+    fetch(`http://localhost:8080/artists/`)
         .then(response => response.json())
         // .then(artistJson => console.log(artistJson))
         .then(artistInfo => createArtistsElements(artistInfo))
@@ -38,4 +39,6 @@ const fetchArtists = () => {
 
 const allArtistsNav = document.querySelector('.all-artists-menu');
 
-allArtistsNav.addEventListener('click', fetchArtists);
+window.setInterval(300, fetchArtists);
+
+// allArtistsNav.addEventListener('click', fetchArtists);
