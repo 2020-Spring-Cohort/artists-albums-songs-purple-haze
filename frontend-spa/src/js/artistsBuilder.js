@@ -39,6 +39,6 @@ const fetchArtists = () => {
 
 const allArtistsNav = document.querySelector('.all-artists-menu');
 
-window.setInterval(300, fetchArtists);
+setInterval(300, fetchArtists);
 
 // allArtistsNav.addEventListener('click', fetchArtists);
