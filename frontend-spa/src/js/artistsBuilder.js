@@ -7,7 +7,7 @@ const singleArtist = document.createElement('DIV');
 singleArtist.classList.add('single-artist');
 
 const artistPic = document.createElement('IMG');
-artistPic.src = `/img/${artist.name}.png`;
+artistPic.src = `http://placekitten.com/250/250`;
 artistPic.classList.add('artist-picture');
 
 const artistName = document.createElement("H3");
