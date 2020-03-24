@@ -43,6 +43,11 @@ public class ArtistController {
         return artistRepository.findById(id).get();
     }
 
+//    @GetMapping("/artists/{artistId}")
+//    public Collection<Album> retrieveAllAlbumsOfArtist(@PathVariable Long artistId){
+//        return albumRepository.findAllByArtist_Id(artistId);
+//    }
+
     //Add an Album (needs an artist)
     @PatchMapping("/artists/{id}/album")
     public Artist updateArtistAlbums(@PathVariable Long id, @RequestBody Album requestBodyAlbum) {
@@ -58,7 +63,6 @@ public class ArtistController {
     return artistRepository.save(artistToAdd);
     }
 
-
     @PatchMapping("artists/{id}/add-comment")
     public Artist addCommentToArtist(@RequestBody Comment commentToPatch, @PathVariable Long id){
         Artist artistToAddCommentTo = artistRepository.findById(id).get();
@@ -68,22 +72,24 @@ public class ArtistController {
         return artistRepository.save(artistToAddCommentTo);
     }
 
-    @DeleteMapping("/artist/")
-    public void deleteArtist( @RequestBody Artist artistToDelete) {
-//        Artist artistToDelete = artistRepository.findById(id).get();
-
-//        for (Album albumToDelete : artistToDelete.getAlbums()) {
-//
-//            for (Song songToDelete : albumToDelete.getSongs()) {
-//                songRepository.delete(songToDelete);
-//            }
-//
-//            albumRepository.delete(albumToDelete);
-//        }
-
-        artistRepository.delete(artistToDelete);
+    @PatchMapping("artists/{artistId}/{albumId}/add-comment")
+    public Album addCommentToAlbum(@RequestBody Comment commentToPatch, @PathVariable Long albumId){
+        Album albumToAddComentTo = albumRepository.findById(albumId).get();
+        albumToAddComentTo.addCommentToAlbum(commentToPatch);
+        commentRepo.save(commentToPatch);
+        return albumToAddComentTo;
     }
 
-
-
+    @DeleteMapping("/artist/{id}")
+    public Collection<Artist>  deleteArtist(@PathVariable Long id) {
+        Artist artistToDelete = artistRepository.findById(id).get();
+        for (Album albumToDelete : artistToDelete.getAlbums()) {
+            for (Song songToDelete : albumToDelete.getSongs()) {
+                songRepository.delete(songToDelete);
+            }
+            albumRepository.delete(albumToDelete);
+        }
+        artistRepository.delete(artistToDelete);
+    return(Collection<Artist>) artistRepository.findAll();
+    }
 }

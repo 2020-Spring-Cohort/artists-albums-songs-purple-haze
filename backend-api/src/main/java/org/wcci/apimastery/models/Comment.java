@@ -13,8 +13,6 @@ public class Comment {
     @GeneratedValue
     private Long id;
 
-
-
     private String commenterName;
     private String commentContent;
 
@@ -28,7 +26,6 @@ public class Comment {
     public Long getId() {
         return id;
     }
-
 
     public String getCommenterName() {
         return commenterName;

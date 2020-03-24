@@ -34,7 +34,7 @@ public class Song {
     @ManyToOne
     private Album album;
 
-    @JsonIgnore
+
     @OneToMany
     private Collection<Comment> comments;
 
