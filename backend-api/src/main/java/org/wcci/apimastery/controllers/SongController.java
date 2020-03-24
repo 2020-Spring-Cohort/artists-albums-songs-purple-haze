@@ -17,7 +17,6 @@ public class SongController {
     public SongController(SongRepository songRepository, CommentRepository commentRepository) {
         this.songRepository = songRepository;
         this.commentRepository = commentRepository;
-
     }
 
     @GetMapping("/songs")
@@ -49,9 +48,5 @@ public class SongController {
         commentRepository.save(addedComment);
         return songRepository.save(songToAddCommentTo);
     }
-
-
-
-
 
 }

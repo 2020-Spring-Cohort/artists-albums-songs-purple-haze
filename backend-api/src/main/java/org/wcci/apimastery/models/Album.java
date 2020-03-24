@@ -90,7 +90,7 @@ public class Album {
                 '}';
     }
 
-    public void addCommentToArtist(Comment commentToAdd) {
+    public void addCommentToAlbum(Comment commentToAdd) {
         comments.add(commentToAdd);
     }
 
