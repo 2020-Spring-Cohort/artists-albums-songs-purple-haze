@@ -1,7 +1,10 @@
 
 const createSingleArtistElements = (artist) => {
     console.log(artist);
-
+artist.albums.forEach(album => {
+    console.log(album.albumTitle)
+    
+});
 
 const anchor = document.querySelector('.anchor');
 const artistSection = document.createElement('DIV');
