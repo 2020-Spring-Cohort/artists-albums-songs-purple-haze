@@ -1,9 +1,33 @@
 
 const createSingleArtistElements = (artist) => {
     console.log(artist);
+    const albumList = document.createElement("div");
+    albumList.classList.add('album-list');
+    
 artist.albums.forEach(album => {
     console.log(album.albumTitle)
+
     
+
+
+const singleAlbum = document.createElement("div");
+singleAlbum.classList.add('single-album');
+const artistName = document.createElement('p')
+const albumName = document.createElement('h3');
+const albumPic = document.createElement('IMG');
+albumPic.src = `http://placekitten.com/250/250`;
+albumPic.classList.add('album-picture');
+
+singleAlbum.appendChild(albumPic);
+albumName.innerHTML = album.albumTitle;
+artistName.innerHTML = artist.name;
+singleAlbum.appendChild(albumName);
+singleAlbum.appendChild(artistName);
+albumList.appendChild(singleAlbum);
+
+
+
+
 });
 
 const anchor = document.querySelector('.anchor');
@@ -30,6 +54,7 @@ artistHomeTown.classList.add('artist-hometown');
 artistHomeTown.innerHTML = artist.hometown;
 
 anchor.appendChild(artistSection);
+anchor.appendChild(albumList);
 //name
     artistSection.appendChild(artistName);
 //genre
