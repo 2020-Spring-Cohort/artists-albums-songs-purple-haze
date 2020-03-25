@@ -107,8 +107,8 @@ public class JpaWiringTest {
     }
     @Test
     public void albumShouldHaveComments(){
-        testAlbum1.addCommentToArtist(testComment);
-        testAlbum1.addCommentToArtist(testComment2);
+        testAlbum1.addCommentToAlbum(testComment);
+        testAlbum1.addCommentToAlbum(testComment2);
 
         albumRepo.save(testAlbum1);
         commentRepo.save(testComment);
