@@ -10,9 +10,9 @@ const artistName = document.createElement("H3");
 artistName.classList.add('artist-name');
 artistName.innerHTML = artist.name;
 
-// const artistGenre = document.createElement('P');
-// artistGenre.classList.add('artist-genre');
-// artistGenre.innerHTML = artist.genre;
+const artistGenre = document.createElement('P');
+artistGenre.classList.add('artist-genre');
+artistGenre.innerHTML = (artist.genre == 'undefined' ? artist.genre : 'No Genre');
 
 const artistbirthDate = document.createElement('P');
 artistbirthDate.classList.add('artist-birthDate');
@@ -30,7 +30,7 @@ anchor.appendChild(artistSection);
 //name
     artistSection.appendChild(artistName);
 //genre
-    // artistSection.appendChild(artistGenre);
+    artistSection.appendChild(artistGenre);
 //age
     artistSection.appendChild(artistbirthDate);
 //label
