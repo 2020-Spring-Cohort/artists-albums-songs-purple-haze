@@ -10,7 +10,7 @@ artist.albums.forEach(album => {
     
 
 
-const singleAlbum = document.createElement("div");
+const singleAlbum = document.createElement("DIV");
 singleAlbum.classList.add('single-album');
 const artistName = document.createElement('p')
 const albumName = document.createElement('h3');
