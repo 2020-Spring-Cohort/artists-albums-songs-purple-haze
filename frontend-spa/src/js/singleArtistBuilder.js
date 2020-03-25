@@ -1,6 +1,6 @@
 
-const createSingleArtistElements = (jsonData) => {
-    console.log(jsonData);
+const createSingleArtistElements = (artist) => {
+    console.log(artist);
 
 
 const anchor = document.querySelector('.anchor');
@@ -13,12 +13,15 @@ artistName.innerHTML = artist.name;
 // const artistGenre = document.createElement('P');
 // artistGenre.classList.add('artist-genre');
 // artistGenre.innerHTML = artist.genre;
-// const artistbirthDate = document.createElement('P');
-// artistbirthDate.classList.add('artist-birthDate');
-// artistbirthDate.innerHTML = artist.birthDate;
+
+const artistbirthDate = document.createElement('P');
+artistbirthDate.classList.add('artist-birthDate');
+artistbirthDate.innerHTML = artist.birthDate;
+
 const artistLabel = document.createElement('P');
 artistLabel.classList.add('artist-label');
 artistLabel.innerHTML = artist.recordlabel;
+
 const artistHomeTown = document.createElement('P');
 artistHomeTown.classList.add('artist-hometown');
 artistHomeTown.innerHTML = artist.hometown;
@@ -29,7 +32,7 @@ anchor.appendChild(artistSection);
 //genre
     // artistSection.appendChild(artistGenre);
 //age
-    // artistSection.appendChild(artistbirthDate);
+    artistSection.appendChild(artistbirthDate);
 //label
     artistSection.appendChild(artistLabel);
 // hometown
