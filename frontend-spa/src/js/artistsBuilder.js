@@ -1,3 +1,5 @@
+export {displayAllArtists}
+import {renderAllArtists} from './app.js';
 
 const createArtistsElements = (jsonData) => { 
     console.log(jsonData);
@@ -23,11 +25,15 @@ anchor.appendChild(singleArtist);
 singleArtist.appendChild(artistPic);
 singleArtist.appendChild(artistName);
 singleArtist.appendChild(artistLabel);
+
+
+
 })
+
 };
 
 
-const fetchArtists = () => {
+const displayAllArtists = () => {
     fetch(`http://localhost:8080/artists/`)
         .then(response => response.json())
         // .then(artistJson => console.log(artistJson))
@@ -35,10 +41,4 @@ const fetchArtists = () => {
 }
 
 
-// fetchArtists();
 
-const allArtistsNav = document.querySelector('.all-artists-menu');
-
-
-
-allArtistsNav.addEventListener('click', fetchArtists);
