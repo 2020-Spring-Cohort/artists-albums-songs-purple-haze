@@ -7,10 +7,7 @@ const createSingleArtistElements = (artist) => {
 artist.albums.forEach(album => {
     console.log(album.albumTitle)
 
-    
-
-
-const singleAlbum = document.createElement("div");
+const singleAlbum = document.createElement("DIV");
 singleAlbum.classList.add('single-album');
 const artistName = document.createElement('p')
 const albumName = document.createElement('h3');
@@ -24,8 +21,6 @@ artistName.innerHTML = artist.name;
 singleAlbum.appendChild(albumName);
 singleAlbum.appendChild(artistName);
 albumList.appendChild(singleAlbum);
-
-
 
 
 });

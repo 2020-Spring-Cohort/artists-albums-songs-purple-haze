@@ -1,9 +1,7 @@
 import {displayAllArtists} from './artistsBuilder.js';
 import {displayAllAlbums} from './albumsBuilder.js';
-export {
-    renderAllArtists
-    // renderAllAlbums
-}
+export {renderAllArtists}
+export {renderAllAlbums}
 
 
 const anchor = document.querySelector('.anchor');
@@ -20,19 +18,19 @@ const renderAllArtists = () => {
     anchor.classList.add('main-section');
     displayAllArtists();
 }
-
-// const renderAllAlbums = () => {
-//     clearView();
-//     displayAllAlbums();
-// }
-
-
+ const renderAllAlbums = () => {
+    clearView();
+    anchor.classList.add('main-section');
+    displayAllAlbums();
+}
 
 
-// fetchArtists();
+
+
+//fetchArtists();
 
 const allArtistsNav = document.querySelector('.all-artists-menu');
 allArtistsNav.addEventListener('click', renderAllArtists);
 
-const allAlbumsNav = document.querySelector('all-albums-menu');
+const allAlbumsNav = document.querySelector('.all-albums-menu');
 allAlbumsNav.addEventListener('click', renderAllAlbums);
