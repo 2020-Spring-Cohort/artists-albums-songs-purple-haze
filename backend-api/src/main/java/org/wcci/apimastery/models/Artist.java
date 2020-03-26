@@ -1,21 +1,25 @@
 package org.wcci.apimastery.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
 import java.util.*;
 
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id"
+)
 @Entity
 public class Artist {
     @Id
     @GeneratedValue
     private Long id;
 
-//    @JsonIgnore
+
     @OneToMany(mappedBy = "artist")
     private Collection<Album> albums;
 
-   // @JsonIgnore
+    @JsonIgnore
     @OneToMany
     private Collection<Comment> comments;
 
@@ -41,6 +45,7 @@ public class Artist {
         this.name= name;
         this.comments = new ArrayList<>();
         this.ratings = new Ratings();
+
     }
 
     public Long getId() {

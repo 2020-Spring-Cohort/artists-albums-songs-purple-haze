@@ -1,13 +1,17 @@
+import { displaySingleAlbum } from "./albumBuilder.js";
+import { renderSingleAlbum } from "./app.js";
+
 export {
-    displaySingleArtist}
+    displaySingleArtist
+}
 
 const createSingleArtistElements = (artist) => {
-    console.log(artist);
+    // console.log(artist);
     const albumList = document.createElement("div");
     albumList.classList.add('album-list');
     
 artist.albums.forEach(album => {
-    console.log(album.albumTitle)
+    // console.log(album.albumTitle)
 
 const singleAlbum = document.createElement("DIV");
 singleAlbum.classList.add('single-album');
@@ -24,6 +28,9 @@ singleAlbum.appendChild(albumName);
 singleAlbum.appendChild(artistName);
 albumList.appendChild(singleAlbum);
 
+singleAlbum.addEventListener('click' , ()=> {
+    renderSingleAlbum(album.id);
+})
 
 });
 

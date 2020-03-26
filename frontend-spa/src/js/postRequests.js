@@ -1,4 +1,7 @@
-import { addNewArtist } from "./app.js";
+import { addNewArtist,
+    renderAllArtists
+
+} from "./app.js";
 export {
     addArtistToDataBase
 }
@@ -10,6 +13,7 @@ const addArtistToDataBase = (jsonData) => {
         'Content-Type' : 'application/json'
     },
     body: JSON.stringify(jsonData)
-    }).then((jsonData)=> console.log(jsonData)); 
+    }).then((jsonData)=> console.log(jsonData))
+    .then(renderAllArtists());
 
 }

@@ -1,6 +1,8 @@
 package org.wcci.apimastery.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -8,7 +10,10 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 
-
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id"
+)
 @Entity
 public class Song {
 
@@ -29,8 +34,7 @@ public class Song {
         return album;
     }
 
-
-    @JsonIgnore
+    
     @ManyToOne
     private Album album;
 

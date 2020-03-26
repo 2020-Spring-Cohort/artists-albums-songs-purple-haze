@@ -29,7 +29,7 @@ public class AlbumController {
         return (Collection<Album>) albumRepository.findAll();
     }
 
-    @GetMapping("artists/{artistId}/{albumId}")
+    @GetMapping("albums/{albumId}")
     public Album displaySingleAlbum(@PathVariable Long albumId) {
         return albumRepository.findById(albumId).get();
     }

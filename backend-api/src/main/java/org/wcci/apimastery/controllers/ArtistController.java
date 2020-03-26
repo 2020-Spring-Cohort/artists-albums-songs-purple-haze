@@ -60,6 +60,7 @@ public class ArtistController {
     //CreateArtist
     @PostMapping("/artists")
     public Artist createArtist(@RequestBody Artist artistToAdd) {
+        artistToAdd.setRecordLabel(artistToAdd.getRecordLabel());
     return artistRepository.save(artistToAdd);
     }
 
