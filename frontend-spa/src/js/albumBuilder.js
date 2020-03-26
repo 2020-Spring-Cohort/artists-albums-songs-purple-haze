@@ -3,7 +3,7 @@ export {
 }
 
 const createSingleAlbumElements = (album) => {
-    // console.log(album);
+    console.log(album);
     const anchor = document.querySelector('.anchor');
     anchor.classList.add('songs-section');
     const albumList = document.createElement('DIV');
@@ -19,10 +19,11 @@ const createSingleAlbumElements = (album) => {
     albumPic.classList.add('album-picture');
 
     albumName.innerHTML = album.albumTitle;
-    artistName.innerHTML = album.name;
+    artistName.innerHTML = album.artist.name;
 
     singleAlbum.appendChild(albumPic);
     singleAlbum.appendChild(albumName);
+    singleAlbum.appendChild(artistName);
 
     anchor.appendChild(singleAlbum);
 
@@ -32,12 +33,15 @@ const createSingleAlbumElements = (album) => {
 
         const singleSongTitleName = document.createElement('h3')
         const singleSongTitleArtist = document.createElement('h3')
+        const singleSongTitleAlbum = document.createElement('h3')
 
         singleSongTitleName.innerHTML = "Song Name";
-        singleSongTitleArtist.innerHTML = "Artist Name";
+         singleSongTitleArtist.innerHTML = "Artist Name";
+        singleSongTitleAlbum.innerHTML = "Album Name";
 
         singleSongHeader.appendChild(singleSongTitleName);
         singleSongHeader.appendChild(singleSongTitleArtist);
+        singleSongHeader.appendChild(singleSongTitleAlbum);
 
         albumList.append(singleSongHeader);
 
@@ -53,12 +57,19 @@ const createSingleAlbumElements = (album) => {
 
         const albumName = document.createElement('p');
         albumName.classList.add('album-name');
-        albumName.innerHTML = song.songTitle;
+        albumName.innerHTML = album.albumTitle;
+
+        const artistName = document.createElement('p');
+        artistName.classList.add('artist-name--detail');
+        artistName.innerHTML = album.artist.name;
+
+
         // anchor.appendChild(songSection);
         // anchor.appendChild(albumList);
         singleSongBox.appendChild(songTitle);
+        singleSongBox.appendChild(artistName);
         singleSongBox.appendChild(albumName);
-        // singleSongBox.appendChild(artistName);
+     
         // singleSongBox.appendChild(duration);
         albumList.appendChild(singleSongBox);
 

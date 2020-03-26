@@ -1,3 +1,6 @@
+import { displaySingleAlbum } from "./albumBuilder.js";
+import { renderSingleAlbum } from "./app.js";
+
 export {
     displaySingleArtist
 }
@@ -25,6 +28,9 @@ singleAlbum.appendChild(albumName);
 singleAlbum.appendChild(artistName);
 albumList.appendChild(singleAlbum);
 
+singleAlbum.addEventListener('click' , ()=> {
+    renderSingleAlbum(album.id);
+})
 
 });
 

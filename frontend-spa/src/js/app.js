@@ -29,7 +29,7 @@ const anchor = document.querySelector('.anchor');
 
 const renderAllArtists = () => {
     clearView();
-    anchor.classList.add('main-section');
+    // anchor.classList.add('main-section');
     displayAllArtists();
     anchor.append(displayAddNewArtist());
     // const submitButton = form.querySelector('.submit');
@@ -60,7 +60,7 @@ const renderAllAlbums = () => {
 }
 const clearView = () => {
     while (anchor.firstChild) {
-        anchor.classList.remove = ('main-section');
+        // anchor.classList.remove = ('main-section');
         anchor.removeChild(anchor.firstChild);
     }
 }

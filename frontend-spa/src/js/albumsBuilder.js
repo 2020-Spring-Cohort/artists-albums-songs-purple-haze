@@ -9,11 +9,14 @@ from './app.js';
 
 //get the json
 const createAlbumsElements = (jsonData) => {
-    // console.log(jsonData);
+    console.log(jsonData);
     jsonData.forEach(album => {
         const anchor = document.querySelector('.anchor');
         const singleAlbum = document.createElement('SECTION');
         singleAlbum.classList.add('single-album');
+
+        const albumList = document.createElement('DIV');
+        albumList.classList.add('album-list');
 
         const albumPic = document.createElement('IMG');
         albumPic.src = `https://store.acousticsounds.com/images/medium/ALEG_23981__65677__03082010031341-4566.jpg`;
@@ -31,11 +34,12 @@ const createAlbumsElements = (jsonData) => {
             renderSingleAlbum(album.id);
         })
 
-        anchor.appendChild(singleAlbum);
+       
         singleAlbum.appendChild(albumPic);
         singleAlbum.appendChild(albumTitle);
         singleAlbum.appendChild(artist);
-    
+        albumList.appendChild(singleAlbum);
+        anchor.appendChild(albumList);
     });
 
 };

@@ -1,13 +1,17 @@
 package org.wcci.apimastery.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 
+
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id"
+)
 @Entity
 public class Album {
 
@@ -15,7 +19,7 @@ public class Album {
     @GeneratedValue
     private Long id;
 
-    @JsonIgnore
+//    @JsonBackReference
     @ManyToOne
     private Artist artist;
 
