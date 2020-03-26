@@ -1,3 +1,5 @@
+export {
+    displaySingleArtist}
 
 const createSingleArtistElements = (artist) => {
     console.log(artist);
@@ -63,10 +65,9 @@ anchor.appendChild(albumList);
 
 }
 
-const fetchArtist = () => {
-    fetch(`http://localhost:8080/artists/1`)
+const displaySingleArtist = (id) => {
+    fetch(`http://localhost:8080/artists/${id}`)
             .then(response => response.json())
             .then(singleArtistInfo => createSingleArtistElements(singleArtistInfo))
 };
 
-fetchArtist();

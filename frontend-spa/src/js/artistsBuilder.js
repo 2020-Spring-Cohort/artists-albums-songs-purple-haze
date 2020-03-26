@@ -1,5 +1,9 @@
 export {displayAllArtists}
-import {renderAllArtists} from './app.js';
+import {renderAllArtists,
+    renderSingleArtist
+
+} from './app.js';
+
 
 const createArtistsElements = (jsonData) => { 
     console.log(jsonData);
@@ -19,13 +23,18 @@ artistName.innerHTML = artist.name;
 
 const artistLabel = document.createElement('H4');
 artistLabel.classList.add('artist-label');
-artistLabel.innerHTML = artist.label;
+artistLabel.innerHTML = (artist.label == 'undefined' ? artist.label : 'Unsigned Label');
+
+singleArtist.style.cursor = 'pointer';
+singleArtist.addEventListener('click', ()=>{
+    console.log(artist.id);
+    renderSingleArtist(artist.id);
+})
 
 anchor.appendChild(singleArtist);
 singleArtist.appendChild(artistPic);
 singleArtist.appendChild(artistName);
 singleArtist.appendChild(artistLabel);
-
 
 
 })
