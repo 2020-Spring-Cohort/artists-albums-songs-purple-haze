@@ -11,7 +11,8 @@ import {
 
 const createArtistsElements = (jsonData) => {
     // console.log(jsonData);
-    const anchor = document.querySelector('.anchor');
+    const artistsSection = document.createElement('div');
+    artistsSection.classList.add('main-section');
     jsonData.forEach((artist) => {
 
         const singleArtist = document.createElement('DIV');
@@ -30,27 +31,30 @@ const createArtistsElements = (jsonData) => {
         artistLabel.classList.add('artist-label');
         artistLabel.innerHTML = (artist.label == 'undefined' ? artist.label : 'Unsigned Label');
 
+        //clickEvent
         singleArtist.style.cursor = 'pointer';
         singleArtist.addEventListener('click', () => {
             console.log(artist.id);
             renderSingleArtist(artist.id);
         })
 
-        anchor.appendChild(singleArtist);
         singleArtist.appendChild(artistPic);
         singleArtist.appendChild(artistName);
         singleArtist.appendChild(artistLabel);
-
+    artistsSection.appendChild(singleArtist);
 
     })
 
-
+return artistsSection;
 };
 
 
-const displayAllArtists = () => {
+const displayAllArtists = (anchorElement) => {
     fetch(`http://localhost:8080/artists/`)
         .then(response => response.json())
         // .then(artistJson => console.log(artistJson))
-        .then(artistInfo => createArtistsElements(artistInfo))
+        .then(artistInfo =>  anchorElement
+            .append(createArtistsElements(artistInfo)));
+
+        
 }
