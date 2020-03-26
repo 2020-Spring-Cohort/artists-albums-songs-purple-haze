@@ -7,11 +7,13 @@ import {
     addNewArtist
 
 } from './app.js';
+import { displayAddNewArtist } from './addArtist.js';
 
 
 const createArtistsElements = (jsonData) => {
     // console.log(jsonData);
-    const anchor = document.querySelector('.anchor');
+    const artistsSection = document.createElement('div');
+    artistsSection.classList.add('main-section');
     jsonData.forEach((artist) => {
 
         const singleArtist = document.createElement('DIV');
@@ -28,29 +30,32 @@ const createArtistsElements = (jsonData) => {
 
         const artistLabel = document.createElement('H4');
         artistLabel.classList.add('artist-label');
-        artistLabel.innerHTML = (artist.label == 'undefined' ? artist.label : 'Unsigned Label');
+        artistLabel.innerHTML = (artist.recordLabel === null ? "Unsigned" : artist.recordLabel);
 
+        //clickEvent
         singleArtist.style.cursor = 'pointer';
         singleArtist.addEventListener('click', () => {
             console.log(artist.id);
             renderSingleArtist(artist.id);
         })
 
-        anchor.appendChild(singleArtist);
         singleArtist.appendChild(artistPic);
         singleArtist.appendChild(artistName);
         singleArtist.appendChild(artistLabel);
-
+    artistsSection.appendChild(singleArtist);
 
     })
-
-
+artistsSection.appendChild(displayAddNewArtist());
+return artistsSection;
 };
 
 
-const displayAllArtists = () => {
+const displayAllArtists = (anchorElement) => {
     fetch(`http://localhost:8080/artists/`)
         .then(response => response.json())
         // .then(artistJson => console.log(artistJson))
-        .then(artistInfo => createArtistsElements(artistInfo))
+        .then(artistInfo =>  anchorElement
+            .append(createArtistsElements(artistInfo)));
+
+        
 }
