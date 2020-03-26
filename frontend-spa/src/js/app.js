@@ -14,7 +14,6 @@ import {
     addArtistToDataBase
 }from './postRequests.js';
 
-
 import {displaySingleAlbum} from './albumBuilder.js';
 
 export {
@@ -22,11 +21,11 @@ export {
     renderAllAlbums,
     renderSingleArtist,
     renderSingleAlbum,
+    displaySingleAlbum,
     addNewArtist
 }
 
 const anchor = document.querySelector('.anchor');
-
 
 const renderAllArtists = () => {
     clearView();
@@ -41,7 +40,6 @@ const addNewArtist = (jsonObject) => {
     clearView();
     // console.log(jsonObject);
     addArtistToDataBase(jsonObject);
-
     renderAllArtists();
 }
 
@@ -49,14 +47,15 @@ const renderSingleArtist = (id) => {
     clearView();
     displaySingleArtist(id);
 }
-const renderSingleAlbum = (id) => {
+
+const renderSingleAlbum = (album) => {
     clearView();
-    displaySingleAlbum(id);
+    displaySingleAlbum(album);
+
 }
 
 const renderAllAlbums = () => {
     clearView();
-    anchor.classList.add('main-section');
     displayAllAlbums();
 }
 const clearView = () => {

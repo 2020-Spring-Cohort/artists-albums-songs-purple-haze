@@ -1,11 +1,15 @@
-export  {displayAllAlbums}
-import {renderAllAlbums,
+export{displayAllAlbums
+} 
+import {
     renderSingleAlbum
-} from './app.js';
+}
+from './app.js';
+
+
 
 //get the json
 const createAlbumsElements = (jsonData) => {
-    console.log(jsonData);
+    // console.log(jsonData);
     jsonData.forEach(album => {
         const anchor = document.querySelector('.anchor');
         const singleAlbum = document.createElement('SECTION');
@@ -23,7 +27,7 @@ const createAlbumsElements = (jsonData) => {
         
         singleAlbum.style.cursor = 'pointer';
         singleAlbum.addEventListener('click', () =>{
-            console.log(album.id);
+            // console.log(album.id);
             renderSingleAlbum(album.id);
         })
 
