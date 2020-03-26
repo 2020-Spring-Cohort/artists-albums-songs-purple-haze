@@ -27,7 +27,7 @@ const renderAllArtists = () => {
 
 
 
-// fetchArtists();
+//fetchArtists();
 
 const allArtistsNav = document.querySelector('.all-artists-menu');
 allArtistsNav.addEventListener('click', renderAllArtists);
