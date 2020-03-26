@@ -1,14 +1,26 @@
-import {displayAllArtists} from './artistsBuilder.js';
-import {displayAllAlbums} from './albumsBuilder.js';
-export {renderAllArtists}
-export {renderAllAlbums}
+import {
+    displayAllArtists
+} from './artistsBuilder.js';
+import {
+    displayAllAlbums
+} from './albumsBuilder.js';
+import {
+    displaySingleArtist
+}from './singleArtistBuilder.js';
+
+export {
+    renderAllArtists,
+    renderAllAlbums,
+    renderSingleArtist
+}
+
 
 
 const anchor = document.querySelector('.anchor');
 
 const clearView = () => {
     while (anchor.firstChild) {
-        anchor.class.remove = ('main-section');
+        anchor.classList.remove = ('main-section');
         anchor.removeChild(anchor.firstChild);
     }
 }
@@ -18,7 +30,14 @@ const renderAllArtists = () => {
     anchor.classList.add('main-section');
     displayAllArtists();
 }
- const renderAllAlbums = () => {
+
+const renderSingleArtist = (id) => {
+    clearView();
+    displaySingleArtist(id);
+
+
+}
+const renderAllAlbums = () => {
     clearView();
     anchor.classList.add('main-section');
     displayAllAlbums();

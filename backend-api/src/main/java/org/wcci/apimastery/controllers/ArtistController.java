@@ -74,10 +74,10 @@ public class ArtistController {
 
     @PatchMapping("artists/{artistId}/{albumId}/add-comment")
     public Album addCommentToAlbum(@RequestBody Comment commentToPatch, @PathVariable Long albumId){
-        Album albumToAddComentTo = albumRepository.findById(albumId).get();
-        albumToAddComentTo.addCommentToAlbum(commentToPatch);
+        Album albumToAddCommentTo = albumRepository.findById(albumId).get();
+        albumToAddCommentTo.addCommentToAlbum(commentToPatch);
         commentRepo.save(commentToPatch);
-        return albumToAddComentTo;
+        return albumToAddCommentTo;
     }
 
     @DeleteMapping("/artist/{id}")
