@@ -13,8 +13,16 @@ import {
 import { 
     addArtistToDataBase
 }from './postRequests.js';
+import{
+    addSongToDataBase
+}from './postRequests.js';
+import {
+    displayAddNewSong
+}from './addSong.js';
 
-import {displaySingleAlbum} from './albumBuilder.js';
+import {
+    displaySingleAlbum
+} from './albumBuilder.js';
 
 export {
     renderAllArtists,
@@ -23,6 +31,7 @@ export {
     renderSingleAlbum,
     displaySingleAlbum,
     addNewArtist,
+    addNewSong,
     clearView
 }
 
@@ -40,6 +49,12 @@ const addNewArtist = (jsonObject) => {
     // console.log(jsonObject);
     addArtistToDataBase(jsonObject);
     // renderAllArtists();
+}
+
+const addNewSong = (jsonObject) => {
+    clearView();
+    addSongToDataBase(jsonObject);
+    renderAllAlbums();
 }
 
 const renderSingleArtist = (id) => {
