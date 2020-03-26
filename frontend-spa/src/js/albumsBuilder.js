@@ -2,7 +2,7 @@ export  {displayAllAlbums}
 import {renderAllArtists} from './app.js';
 
 
-//fetch from the controlle
+//fetch from the controller
 const displayAllAlbums = () => {
     fetch(`http://localhost:8080/albums/`)
             .then(response => response.json())
