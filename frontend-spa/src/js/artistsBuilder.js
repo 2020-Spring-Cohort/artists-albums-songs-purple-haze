@@ -7,6 +7,7 @@ import {
     addNewArtist
 
 } from './app.js';
+import { displayAddNewArtist } from './addArtist.js';
 
 
 const createArtistsElements = (jsonData) => {
@@ -44,7 +45,7 @@ const createArtistsElements = (jsonData) => {
     artistsSection.appendChild(singleArtist);
 
     })
-
+artistsSection.appendChild(displayAddNewArtist());
 return artistsSection;
 };
 

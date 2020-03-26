@@ -1,10 +1,7 @@
 export {
     displayAddNewArtist
 }
-import {
-    renderAllArtists,
-    addNewArtist
-} from './app.js';
+
 
 const displayAddNewArtist = () => {
 

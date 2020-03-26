@@ -31,7 +31,7 @@ const anchor = document.querySelector('.anchor');
 const renderAllArtists = () => {
     clearView();
     displayAllArtists(anchor);
-    anchor.append(displayAddNewArtist());
+
 
 }
 
