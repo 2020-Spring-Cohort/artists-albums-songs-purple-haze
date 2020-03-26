@@ -27,6 +27,8 @@ public class Populator implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         Artist hendrix = new Artist("Jimmy Hendrix");
+
+        hendrix.setRecordLabel("Universal Music");
         artistRepo.save(hendrix);
 
         Artist Fleetwood = new Artist ("Fleetwood Mac");

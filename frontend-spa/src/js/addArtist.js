@@ -1,11 +1,10 @@
+import {
+    addNewArtist, clearView
+} from './app.js';
+
 export {
     displayAddNewArtist
 }
-import {
-    renderAllArtists,
-    addNewArtist
-} from './app.js';
-
 const displayAddNewArtist = () => {
 
     // const anchor = document.querySelector('.anchor');
@@ -53,6 +52,7 @@ const displayAddNewArtist = () => {
             // "url" : document.querySelector('.artist-input-name').value
         };
         addNewArtist(jsonObject);
+        clearView();
     });
 
     return addAnArtistElement;

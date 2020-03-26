@@ -22,33 +22,32 @@ export {
     renderSingleArtist,
     renderSingleAlbum,
     displaySingleAlbum,
-    addNewArtist
+    addNewArtist,
+    clearView
 }
 
 const anchor = document.querySelector('.anchor');
 
 const renderAllArtists = () => {
     clearView();
-    // anchor.classList.add('main-section');
-    displayAllArtists();
-    anchor.append(displayAddNewArtist());
-    // const submitButton = form.querySelector('.submit');
-    // submitButton.addEventListener('click', addNewArtist);
+    displayAllArtists(anchor);
+
+
 }
 
 const addNewArtist = (jsonObject) => {
     clearView();
     // console.log(jsonObject);
     addArtistToDataBase(jsonObject);
-    renderAllArtists();
+    // renderAllArtists();
 }
 
 const renderSingleArtist = (id) => {
     clearView();
-    displaySingleArtist(id);
+    displaySingleArtist(id, anchor);
 }
 
-const renderSingleAlbum = (album) => {
+const renderSingleAlbum = (album, ) => {
     clearView();
     displaySingleAlbum(album);
 
@@ -67,7 +66,7 @@ const clearView = () => {
 
 
 
-//fetchArtists();
+renderAllArtists();
 
 const allArtistsNav = document.querySelector('.all-artists-menu');
 allArtistsNav.addEventListener('click', renderAllArtists);

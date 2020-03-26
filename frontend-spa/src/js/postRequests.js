@@ -1,5 +1,6 @@
 import { addNewArtist,
-    renderAllArtists
+    renderAllArtists,
+    clearView
 
 } from "./app.js";
 export {
@@ -13,7 +14,7 @@ const addArtistToDataBase = (jsonData) => {
         'Content-Type' : 'application/json'
     },
     body: JSON.stringify(jsonData)
-    }).then((jsonData)=> console.log(jsonData))
+    }).then(clearView())
     .then(renderAllArtists());
 
 }
