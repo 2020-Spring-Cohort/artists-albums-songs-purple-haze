@@ -8,10 +8,13 @@ import {
     displaySingleArtist
 }from './singleArtistBuilder.js';
 
+import {displaySingleAlbum} from './albumBuilder.js';
+
 export {
     renderAllArtists,
     renderAllAlbums,
-    renderSingleArtist
+    renderSingleArtist,
+    renderSingleAlbum
 }
 
 
@@ -37,6 +40,11 @@ const renderSingleArtist = (id) => {
 
 
 }
+const renderSingleAlbum = (id) => {
+    clearView();
+    displaySingleAlbum(id);
+}
+
 const renderAllAlbums = () => {
     clearView();
     anchor.classList.add('main-section');

@@ -1,14 +1,7 @@
 export  {displayAllAlbums}
-import {renderAllArtists} from './app.js';
-
-
-//fetch from the controller
-const displayAllAlbums = () => {
-    fetch(`http://localhost:8080/albums/`)
-            .then(response => response.json())
-            //.then(albumJson => console.log(albumJson))
-            .then(albumInfo => createAlbumsElements(albumInfo))
-}
+import {renderAllAlbums,
+    renderSingleAlbum
+} from './app.js';
 
 //get the json
 const createAlbumsElements = (jsonData) => {
@@ -28,6 +21,12 @@ const createAlbumsElements = (jsonData) => {
         const artist = document.createElement('P');
         artist.innerHTML = album.artist;
         
+        singleAlbum.style.cursor = 'pointer';
+        singleAlbum.addEventListener('click', () =>{
+            console.log(album.id);
+            renderSingleAlbum(album.id);
+        })
+
         anchor.appendChild(singleAlbum);
         singleAlbum.appendChild(albumPic);
         singleAlbum.appendChild(albumTitle);
@@ -35,7 +34,14 @@ const createAlbumsElements = (jsonData) => {
     
     });
 
-
 };
+
+const displayAllAlbums = () => {
+    fetch(`http://localhost:8080/albums/`)
+            .then(response => response.json())
+            //.then(albumJson => console.log(albumJson))
+            .then(albumInfo => createAlbumsElements(albumInfo))
+}
+
 
 
