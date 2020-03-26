@@ -7,42 +7,56 @@ import {
 import {
     displaySingleArtist
 }from './singleArtistBuilder.js';
+import {
+    displayAddNewArtist
+} from './addArtist.js';
+import { 
+    addArtistToDataBase
+}from './postRequests.js';
+
 
 export {
     renderAllArtists,
     renderAllAlbums,
-    renderSingleArtist
+    renderSingleArtist,
+    addNewArtist
 }
-
-
 
 const anchor = document.querySelector('.anchor');
 
-const clearView = () => {
-    while (anchor.firstChild) {
-        anchor.classList.remove = ('main-section');
-        anchor.removeChild(anchor.firstChild);
-    }
-}
 
 const renderAllArtists = () => {
     clearView();
     anchor.classList.add('main-section');
     displayAllArtists();
+    anchor.append(displayAddNewArtist());
+    // const submitButton = form.querySelector('.submit');
+    // submitButton.addEventListener('click', addNewArtist);
+}
+
+const addNewArtist = (jsonObject) => {
+    clearView();
+    // console.log(jsonObject);
+    addArtistToDataBase(jsonObject);
+
+    renderAllArtists();
 }
 
 const renderSingleArtist = (id) => {
     clearView();
     displaySingleArtist(id);
-
-
 }
 const renderAllAlbums = () => {
     clearView();
     anchor.classList.add('main-section');
     displayAllAlbums();
 }
-
+const clearView = () => {
+    while (anchor.firstChild) {
+        anchor.classList.remove = ('main-section');
+        anchor.removeChild(anchor.firstChild);
+    }
+}
 
 
 
