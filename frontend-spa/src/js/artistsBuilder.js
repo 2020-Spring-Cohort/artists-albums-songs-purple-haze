@@ -30,7 +30,7 @@ const createArtistsElements = (jsonData) => {
 
         const artistLabel = document.createElement('H4');
         artistLabel.classList.add('artist-label');
-        artistLabel.innerHTML = (artist.label == 'undefined' ? artist.label : 'Unsigned Label');
+        artistLabel.innerHTML = (artist.recordLabel === null ? "Unsigned" : artist.recordLabel);
 
         //clickEvent
         singleArtist.style.cursor = 'pointer';

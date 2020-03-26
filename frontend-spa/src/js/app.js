@@ -44,10 +44,10 @@ const addNewArtist = (jsonObject) => {
 
 const renderSingleArtist = (id) => {
     clearView();
-    displaySingleArtist(id);
+    displaySingleArtist(id, anchor);
 }
 
-const renderSingleAlbum = (album) => {
+const renderSingleAlbum = (album, ) => {
     clearView();
     displaySingleAlbum(album);
 

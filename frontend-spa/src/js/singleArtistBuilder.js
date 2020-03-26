@@ -1,5 +1,9 @@
-import { displaySingleAlbum } from "./albumBuilder.js";
-import { renderSingleAlbum } from "./app.js";
+import {
+    displaySingleAlbum
+} from "./albumBuilder.js";
+import {
+    renderSingleAlbum
+} from "./app.js";
 
 export {
     displaySingleArtist
@@ -7,34 +11,10 @@ export {
 
 const createSingleArtistElements = (artist) => {
     // console.log(artist);
-    const albumList = document.createElement("div");
-    albumList.classList.add('album-list');
-    
-artist.albums.forEach(album => {
-    // console.log(album.albumTitle)
 
-const singleAlbum = document.createElement("DIV");
-singleAlbum.classList.add('single-album');
-const artistName = document.createElement('p')
-const albumName = document.createElement('h3');
-const albumPic = document.createElement('IMG');
-albumPic.src = `http://placekitten.com/250/250`;
-albumPic.classList.add('album-picture');
 
-singleAlbum.appendChild(albumPic);
-albumName.innerHTML = album.albumTitle;
-artistName.innerHTML = artist.name;
-singleAlbum.appendChild(albumName);
-singleAlbum.appendChild(artistName);
-albumList.appendChild(singleAlbum);
-
-singleAlbum.addEventListener('click' , ()=> {
-    renderSingleAlbum(album.id);
-})
-
-});
-
-const anchor = document.querySelector('.anchor');
+    const sectionElement = document.createElement('SECTION');
+    sectionElement.classList.add('artist-detail');
 const artistSection = document.createElement('DIV');
 
 const artistName = document.createElement("H3");
@@ -43,7 +23,7 @@ artistName.innerHTML = artist.name;
 
 const artistGenre = document.createElement('P');
 artistGenre.classList.add('artist-genre');
-artistGenre.innerHTML = (artist.genre == 'undefined' ? artist.genre : 'No Genre');
+artistGenre.innerHTML = (artist.recordLabel === null ? "Unsigned" : artist.recordLabel);
 
 const artistbirthDate = document.createElement('P');
 artistbirthDate.classList.add('artist-birthDate');
@@ -57,24 +37,51 @@ const artistHomeTown = document.createElement('P');
 artistHomeTown.classList.add('artist-hometown');
 artistHomeTown.innerHTML = artist.hometown;
 
-anchor.appendChild(artistSection);
-anchor.appendChild(albumList);
-//name
-    artistSection.appendChild(artistName);
-//genre
-    artistSection.appendChild(artistGenre);
-//age
-    artistSection.appendChild(artistbirthDate);
-//label
-    artistSection.appendChild(artistLabel);
-// hometown
-    artistSection.appendChild(artistHomeTown);
+artistSection.appendChild(artistName);
+artistSection.appendChild(artistGenre);
+artistSection.appendChild(artistbirthDate);
+artistSection.appendChild(artistLabel);
+artistSection.appendChild(artistHomeTown);
 
+sectionElement.appendChild(artistSection);
+
+    const albumList = document.createElement("div");
+    albumList.classList.add('album-list');
+
+    artist.albums.forEach(album => {
+        // console.log(album.albumTitle)
+
+        const singleAlbum = document.createElement("DIV");
+        singleAlbum.classList.add('single-album');
+        const artistName = document.createElement('p')
+        const albumName = document.createElement('h3');
+        const albumPic = document.createElement('IMG');
+        albumPic.src = `http://placekitten.com/250/250`;
+        albumPic.classList.add('album-picture');
+
+
+        albumName.innerHTML = album.albumTitle;
+        artistName.innerHTML = artist.name;
+
+        singleAlbum.appendChild(albumPic);
+        singleAlbum.appendChild(albumName);
+        singleAlbum.appendChild(artistName);
+        albumList.appendChild(singleAlbum);
+
+        singleAlbum.addEventListener('click', () => {
+            renderSingleAlbum(album.id);
+        })
+
+    });
+
+sectionElement.appendChild(artistSection);
+sectionElement.appendChild(albumList);
+return sectionElement;
 }
 
-const displaySingleArtist = (id) => {
+const displaySingleArtist = (id, anchorElement) => {
     fetch(`http://localhost:8080/artists/${id}`)
-            .then(response => response.json())
-            .then(singleArtistInfo => createSingleArtistElements(singleArtistInfo))
+        .then(response => response.json())
+        .then(singleArtistInfo => anchorElement
+            .append(createSingleArtistElements(singleArtistInfo)))
 };
-
