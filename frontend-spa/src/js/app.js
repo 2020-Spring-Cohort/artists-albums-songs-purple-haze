@@ -15,10 +15,13 @@ import {
 }from './postRequests.js';
 
 
+import {displaySingleAlbum} from './albumBuilder.js';
+
 export {
     renderAllArtists,
     renderAllAlbums,
     renderSingleArtist,
+    renderSingleAlbum,
     addNewArtist
 }
 
@@ -46,6 +49,11 @@ const renderSingleArtist = (id) => {
     clearView();
     displaySingleArtist(id);
 }
+const renderSingleAlbum = (id) => {
+    clearView();
+    displaySingleAlbum(id);
+}
+
 const renderAllAlbums = () => {
     clearView();
     anchor.classList.add('main-section');
