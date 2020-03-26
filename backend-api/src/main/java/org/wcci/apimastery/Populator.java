@@ -29,18 +29,43 @@ public class Populator implements CommandLineRunner {
         Artist hendrix = new Artist("Jimmy Hendrix");
         artistRepo.save(hendrix);
 
+        Artist Fleetwood = new Artist ("Fleetwood Mac");
+        artistRepo.save(Fleetwood);
+
+        Artist Jon = new Artist ("Jon Longston");
+        artistRepo.save(Jon);
+
+        Artist Luke = new Artist ("Luke Bryan");
+        artistRepo.save(Luke);
+
+        Artist Bebe = new Artist ("Bebe Rexha");
+        artistRepo.save(Bebe);
+
         Artist beatles = new Artist("The Beatles");
         artistRepo.save(beatles);
 
+        Album Expectations = new Album("Expectations",Bebe);
+        albumRepo.save(Expectations);
+
+        Album DoinMyThing = new Album("Doin' My Thing",Luke);
+        albumRepo.save(DoinMyThing);
+
         Album electricLadyLand = new Album("Electric Ladyland", hendrix);
         albumRepo.save(electricLadyLand);
+
         Album axis = new Album("Axis Bold Is Love", hendrix);
         albumRepo.save(axis);
+
+        Album RightGirlWrongTime = new Album("Right Girl, Wrong Time",Jon);
+         albumRepo.save(RightGirlWrongTime);
 
         Album abbey = new Album("Abbey Road", beatles);
         albumRepo.save(abbey);
         Album submarine = new Album("Yellow Submarine", beatles);
         albumRepo.save(submarine);
+
+        Album Rumours = new Album("Rumours",Fleetwood);
+        albumRepo.save(Rumours);
 
         Song traffic = new Song("Crosstown Traffic", electricLadyLand);
         songRepo.save(traffic);
