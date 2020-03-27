@@ -4,6 +4,9 @@ import {
 import {
     renderSingleAlbum
 } from "./app.js";
+import {
+    addAlbumToDataBase
+} from "./postRequests.js";
 
 export {
     displaySingleArtist
@@ -64,6 +67,7 @@ const createSingleArtistElements = (artist) => {
     const albumList = document.createElement("div");
     albumList.classList.add('album-list');
 
+
     artist.albums.forEach(album => {
         // console.log(album.albumTitle)
 
@@ -84,16 +88,52 @@ const createSingleArtistElements = (artist) => {
         singleAlbum.appendChild(artistName);
         albumList.appendChild(singleAlbum);
 
+
+        singleAlbum.appendChild(albumPic);
+        singleAlbum.appendChild(albumName);
+        singleAlbum.appendChild(artistName);
+        albumList.appendChild(singleAlbum);
+
         singleAlbum.addEventListener('click', () => {
             renderSingleAlbum(album.id);
         })
 
     });
 
+    const newAlbum = document.createElement("DIV");
+        newAlbum.classList.add('single-album');
+        const newArtistName = document.createElement('p')
+        const newAlbumName = document.createElement('input');
+        newAlbumName.classList.add("newAlbumTitle");
+        const newAlbumPic = document.createElement('IMG');
+        const addAlbumButton = document.createElement('button');
+        
+        addAlbumButton.addEventListener('click', () =>  {
+            const newAlbumTitle = document.querySelector('.newAlbumTitle').value;
+            addAlbumToDataBase(artist, newAlbumTitle)
+        });
+        addAlbumButton.innerHTML = "add album";
+        newAlbumPic.src = `http://placekitten.com/250/250`;
+        newAlbumPic.classList.add('album-picture');
+
+
+        
+        newArtistName.innerHTML = artist.name;
+        newAlbumName.placeholder = "add new album";
+
+        
+        newAlbum.appendChild(newAlbumPic);
+        newAlbum.appendChild(newAlbumName);
+        newAlbum.appendChild(newArtistName);
+        newAlbum.appendChild(addAlbumButton);
+        albumList.appendChild(newAlbum);
+
     sectionElement.appendChild(artistInfo);
     sectionElement.appendChild(albumList);
     return sectionElement;
 }
+
+
 
 const displaySingleArtist = (id, anchorElement) => {
     fetch(`http://localhost:8080/artists/${id}`)

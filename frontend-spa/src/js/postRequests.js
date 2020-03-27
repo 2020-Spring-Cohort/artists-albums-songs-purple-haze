@@ -1,4 +1,5 @@
 import { addNewArtist,
+    renderSingleArtist,
     renderAllArtists,
     renderAllAlbums,
     clearView
@@ -12,7 +13,8 @@ import {
 
 export {
     addArtistToDataBase,
-    addSongToDataBase
+    addSongToDataBase,
+    addAlbumToDataBase
 }
 
 const addArtistToDataBase = async (jsonData) => {
@@ -37,5 +39,19 @@ const addSongToDataBase = async (jsonData, albumId) => {
     }).then (clearView())
     .then (displaySingleAlbum(albumId));  
    
+}
+
+const addAlbumToDataBase = async (artist, newTitle) => {
+    const jsonData = {
+        "albumTitle" : newTitle
+        }
+    await fetch ('http://localhost:8080/artists/' + artist.id, {
+        method: 'PATCH',
+        headers : {
+            'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify(jsonData)
+    }) .then (clearView())
+        .then (renderSingleArtist(artist.id));
 }
 
