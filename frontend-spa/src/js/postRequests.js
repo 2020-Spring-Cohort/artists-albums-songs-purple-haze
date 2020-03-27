@@ -4,13 +4,19 @@ import { addNewArtist,
     clearView
 
 } from "./app.js";
+
+import {
+    displaySingleAlbum
+} from "./albumBuilder.js";
+
+
 export {
     addArtistToDataBase,
     addSongToDataBase
 }
 
-const addArtistToDataBase = (jsonData) => {
-    fetch ('http://localhost:8080/artists', {
+const addArtistToDataBase = async (jsonData) => {
+    await fetch ('http://localhost:8080/artists', {
     method: 'POST',
     headers : {
         'Content-Type' : 'application/json'
@@ -21,15 +27,15 @@ const addArtistToDataBase = (jsonData) => {
 
 }
 
-const addSongToDataBase = (jsonData) => {
-    fetch ('http://localhost:8080/songs', {
-        method: 'POST',
+const addSongToDataBase = async (jsonData, albumId) => { 
+    await fetch ('http://localhost:8080/albums/' + albumId, {
+        method: 'PATCH',
         headers : {
             'Content-Type' : 'application/json'
         },
         body: JSON.stringify(jsonData)
-    }).then((jsonData)=> console.log(jsonData))
-      .then(renderAllAlbums());  
+    }).then (clearView())
+    .then (displaySingleAlbum(albumId));  
    
 }
 

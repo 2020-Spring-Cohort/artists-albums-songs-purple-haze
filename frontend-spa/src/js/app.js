@@ -51,18 +51,18 @@ const addNewArtist = (jsonObject) => {
     // renderAllArtists();
 }
 
-const addNewSong = (jsonObject) => {
-    clearView();
-    addSongToDataBase(jsonObject);
-    renderAllAlbums();
+const addNewSong = (jsonObject, albumId) => {
+    addSongToDataBase(jsonObject, albumId);
+    
 }
+
 
 const renderSingleArtist = (id) => {
     clearView();
     displaySingleArtist(id, anchor);
 }
 
-const renderSingleAlbum = (album, ) => {
+const renderSingleAlbum = (album) => {
     clearView();
     displaySingleAlbum(album);
 
