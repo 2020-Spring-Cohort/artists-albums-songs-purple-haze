@@ -34,11 +34,12 @@ export {
     addNewSong,
     clearView
 }
-
+const header = document.querySelector('.main-header');
 const anchor = document.querySelector('.anchor');
 
 const renderAllArtists = () => {
     clearView();
+    header.innerHTML = "All Artists";
     displayAllArtists(anchor);
 
 
@@ -70,6 +71,7 @@ const renderSingleAlbum = (album) => {
 
 const renderAllAlbums = () => {
     clearView();
+    header.innerHTML = "All Albums";
     displayAllAlbums();
 }
 const clearView = () => {
@@ -82,6 +84,9 @@ const clearView = () => {
 
 
 renderAllArtists();
+
+
+
 
 const allArtistsNav = document.querySelector('.all-artists-menu');
 allArtistsNav.addEventListener('click', renderAllArtists);

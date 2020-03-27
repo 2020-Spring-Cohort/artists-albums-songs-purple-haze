@@ -9,7 +9,8 @@ main {
 }
 
 .main-nav {
-    background-color: darkgrey;
+    background-color: rgb(12, 18, 31);
+    color: white;
 }
 
 .main-nav ul {
@@ -29,12 +30,15 @@ main {
 }
 
 header {
-    height: 20vh;
-    background-color: azure;
+    height: 10vh;
+    background-color: #101010;
 }
 
 section {
     min-height: 80vh;
+    padding: 1rem;
+    background-color: #181818;
+    color: white;
 }
 
 footer {
@@ -96,9 +100,6 @@ footer {
 .album-detail-pic {
     text-align: center;
 }
-.artist-detail{
-
-}
 
 .single-review-detail{
     background-color: aliceblue;
@@ -142,7 +143,7 @@ input.review-comment{
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: auto;
     justify: space-around;
-    background-color: grey;
+    background-color: #2a292b;
     padding:100px; 
     margin-top: 20px;
 }

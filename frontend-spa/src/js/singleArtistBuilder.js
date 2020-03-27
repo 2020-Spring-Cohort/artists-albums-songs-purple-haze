@@ -11,39 +11,55 @@ export {
 
 const createSingleArtistElements = (artist) => {
     // console.log(artist);
-
-
+ document.querySelector('.main-header').innerText = artist.name;
     const sectionElement = document.createElement('SECTION');
     sectionElement.classList.add('artist-detail');
-const artistSection = document.createElement('DIV');
 
-const artistName = document.createElement("H3");
-artistName.classList.add('artist-name');
-artistName.innerHTML = artist.name;
+    const artistInfo = document.createElement('DIV');
+    artistInfo.classList.add('artist-detail-info');
 
-const artistGenre = document.createElement('P');
-artistGenre.classList.add('artist-genre');
-artistGenre.innerHTML = (artist.recordLabel === null ? "Unsigned" : artist.recordLabel);
+    const artistData = document.createElement('DIV');
+    artistData.classList.add('artist-detail-data');
 
-const artistbirthDate = document.createElement('P');
-artistbirthDate.classList.add('artist-birthDate');
-artistbirthDate.innerHTML = artist.birthDate;
+    const artistPicture = new Image();
+    artistPicture.src = 'http://placekitten.com/250/250';
 
-const artistLabel = document.createElement('P');
-artistLabel.classList.add('artist-label');
-artistLabel.innerHTML = artist.recordlabel;
+    const artistName = document.createElement("H3");
+    artistName.classList.add('artist-name');
+    artistName.innerHTML = artist.name;
+    artistName.style = ('margin: 0');
 
-const artistHomeTown = document.createElement('P');
-artistHomeTown.classList.add('artist-hometown');
-artistHomeTown.innerHTML = artist.hometown;
+    const artistGenre = document.createElement('P');
+    artistGenre.classList.add('artist-genre');
+    artistGenre.innerHTML = (artist.recordLabel === null ? "Unsigned" : artist.recordLabel);
+     artistGenre.style = ('margin: 0 !important');
 
-artistSection.appendChild(artistName);
-artistSection.appendChild(artistGenre);
-artistSection.appendChild(artistbirthDate);
-artistSection.appendChild(artistLabel);
-artistSection.appendChild(artistHomeTown);
+    const artistbirthDate = document.createElement('P');
+    artistbirthDate.classList.add('artist-birthDate');
+    artistbirthDate.innerHTML = 'Created: ' + (artist.birthDate =='null' ? artist.birthDate : 'Some Time In the 70s');
 
-sectionElement.appendChild(artistSection);
+    const artistLabel = document.createElement('P');
+    artistLabel.classList.add('artist-label');
+    artistLabel.innerHTML = 'Label: ' + (artist.recordLabel =='null' ? artist.recordLabel : 'Unsigned');
+
+    const artistHomeTown = document.createElement('P');
+    artistHomeTown.classList.add('artist-hometown');
+    artistHomeTown.innerHTML = "Hometown: " + (artist.hometown=='null' ? artist.hometown : 'Not Known');
+
+    const thumbsSection = document.createElement('div');
+    thumbsSection.classList.add('artist-thumbs-section');
+    thumbsSection.innerHTML =  ' <div class = "thumb thumbsup" <span class = "num-thumbs-up" > 1 </span> Thumbs Up </div> <div class = "thumb thumbsdown" > <span class = "num-thumbs-down" > 2 </span>Thumb Down'
+
+
+    artistData.appendChild(artistName);
+
+    artistData.appendChild(artistbirthDate);
+    artistData.appendChild(artistLabel);
+    artistData.appendChild(artistHomeTown);
+
+    artistInfo.appendChild(artistPicture);
+    artistInfo.appendChild(artistData);
+    artistInfo.appendChild(thumbsSection);
 
     const albumList = document.createElement("div");
     albumList.classList.add('album-list');
@@ -74,9 +90,9 @@ sectionElement.appendChild(artistSection);
 
     });
 
-sectionElement.appendChild(artistSection);
-sectionElement.appendChild(albumList);
-return sectionElement;
+    sectionElement.appendChild(artistInfo);
+    sectionElement.appendChild(albumList);
+    return sectionElement;
 }
 
 const displaySingleArtist = (id, anchorElement) => {
@@ -84,4 +100,5 @@ const displaySingleArtist = (id, anchorElement) => {
         .then(response => response.json())
         .then(singleArtistInfo => anchorElement
             .append(createSingleArtistElements(singleArtistInfo)))
+       
 };

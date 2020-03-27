@@ -6,9 +6,9 @@ export {
 }
 
 const createSingleAlbumElements = (album) => {
-    
-    const anchor = document.querySelector('.anchor');
-    anchor.classList.add('songs-section');
+     document.querySelector('.main-header').innerText = album.albumTitle;
+    const section = document.createElement('DIV');
+    section.classList.add('songs-section');
     const albumList = document.createElement('DIV');
     albumList.classList.add('song-list');
 
@@ -28,7 +28,7 @@ const createSingleAlbumElements = (album) => {
     singleAlbum.appendChild(albumName);
     singleAlbum.appendChild(artistName);
 
-    anchor.appendChild(singleAlbum);
+    section.appendChild(singleAlbum);
 
 
         const singleSongHeader = document.createElement('DIV')
@@ -80,8 +80,9 @@ const createSingleAlbumElements = (album) => {
 
 
 
-    anchor.appendChild(albumList);
     albumList.appendChild(displayAddNewSong(album.id));
+    section.appendChild(albumList);
+    return section;
 
 
 }
@@ -89,5 +90,7 @@ const createSingleAlbumElements = (album) => {
 const displaySingleAlbum = (album) => {
     fetch('http://localhost:8080/albums/' + album)
         .then(response => response.json())
-        .then(singleAlbumInfo => createSingleAlbumElements(singleAlbumInfo))
+        .then(singleAlbumInfo => 
+            document.querySelector('.anchor')
+            .appendChild( createSingleAlbumElements(singleAlbumInfo)))
 };
