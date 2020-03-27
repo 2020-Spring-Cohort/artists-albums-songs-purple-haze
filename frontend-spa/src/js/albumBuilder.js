@@ -92,5 +92,5 @@ const displaySingleAlbum = (album) => {
         .then(response => response.json())
         .then(singleAlbumInfo => 
             document.querySelector('.anchor')
-            .appendChild( createSingleAlbumElements(singleAlbumInfo)))
+            .appendChild(createSingleAlbumElements(singleAlbumInfo)))
 };

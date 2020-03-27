@@ -7,9 +7,11 @@ import{
 } from './app.js';
 
 const displayAddNewSong = (id) => {
-    console.log();
+    console.log(id);
     const addASongElement = document.createElement('DIV');
     addASongElement.classList.add('single-song');
+    addASongElement.style.cssText = 'min-height: 3rem ;font-size: 3rem; font-weight: 800';
+
 
     // const songAddTitle = document.createElement('H3');
     // songAddTitle.classList.add('song-title');
@@ -27,26 +29,24 @@ const displayAddNewSong = (id) => {
     // albumNameToAdd.innerHTML = albumToAddSongTo.artist.name;
 
     const artistNameAdd = document.createElement('div');
-    artistNameAdd.classList.add('artist-input-name');
-    artistNameAdd.placeholder = "Artists Name";
+    // artistNameAdd.classList.add('album-input-name');
+  
 
     const addSongButton = document.createElement('button');
-    addSongButton.classList.add('submit');
+    addSongButton.classList.add('album-input-name');
     addSongButton.innerHTML = "Submit";
     addSongButton.style.cursor = 'pointer';
 
     // addASongElement.appendChild(songAddTitle);
     addASongElement.appendChild(songNameAdd);
     // addASongElement.appendChild(albumNameToAdd);
-    addASongElement.appendChild(artistNameAdd);
+    // addASongElement.appendChild(artistNameAdd);
     addASongElement.appendChild(addSongButton);
 
     addSongButton.addEventListener('click', () => {
         
         let jsonObject = {
             "songTitle" : document.querySelector('.song-input-name').value
-            // "album name" : document.querySelector('.album-input-name').value,
-            // "artist name" : document.querySelector('.artist-input-name').value
         };
         addNewSong(jsonObject, id);
     });
