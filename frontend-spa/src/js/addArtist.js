@@ -1,6 +1,9 @@
 import {
     addNewArtist, clearView
 } from './app.js';
+import {
+    displayAllArtists
+} from './artistsBuilder.js';
 
 export {
     displayAddNewArtist
@@ -53,6 +56,7 @@ const displayAddNewArtist = () => {
         };
         addNewArtist(jsonObject);
         clearView();
+        
     });
 
     return addAnArtistElement;

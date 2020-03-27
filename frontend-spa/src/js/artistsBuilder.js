@@ -45,8 +45,8 @@ const createArtistsElements = (jsonData) => {
     artistsSection.appendChild(singleArtist);
 
     })
-artistsSection.appendChild(displayAddNewArtist());
-return artistsSection;
+    artistsSection.appendChild(displayAddNewArtist());
+    return artistsSection;
 };
 
 
@@ -54,7 +54,7 @@ const displayAllArtists = (anchorElement) => {
     fetch(`http://localhost:8080/artists/`)
         .then(response => response.json())
         // .then(artistJson => console.log(artistJson))
-        .then(artistInfo =>  anchorElement
+        .then(artistInfo =>  document.querySelector(".anchor")
             .append(createArtistsElements(artistInfo)));
 
         

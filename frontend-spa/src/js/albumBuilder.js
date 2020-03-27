@@ -1,9 +1,12 @@
+import { displayAddNewSong 
+} from "./addSong.js";
+
 export {
     displaySingleAlbum
 }
 
 const createSingleAlbumElements = (album) => {
-    console.log(album);
+    
     const anchor = document.querySelector('.anchor');
     anchor.classList.add('songs-section');
     const albumList = document.createElement('DIV');
@@ -78,6 +81,9 @@ const createSingleAlbumElements = (album) => {
 
 
     anchor.appendChild(albumList);
+    albumList.appendChild(displayAddNewSong(album.id));
+
+
 }
 
 const displaySingleAlbum = (album) => {

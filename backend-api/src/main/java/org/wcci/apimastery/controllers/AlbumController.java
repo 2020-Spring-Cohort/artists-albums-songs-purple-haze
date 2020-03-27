@@ -22,6 +22,7 @@ public class AlbumController {
     public AlbumController(AlbumRepository albumRepository, ArtistRepository artistRepository, SongRepository songRepository){
         this.albumRepository = albumRepository;
         this.artistRepository = artistRepository;
+        this.songRepository = songRepository;
     }
 
     @GetMapping("/albums")
@@ -40,7 +41,7 @@ public class AlbumController {
         return albumRepository.save(albumToAdd);
     }
 
-    @PatchMapping("artists/{artistId}/{albumId}")
+    @PatchMapping("/albums/{albumId}")
     public Album updateAlbumsWithSongs(@PathVariable Long albumId, @RequestBody Song requestBodySong) {
         Album albumToPatch = albumRepository.findById(albumId).get();
         Song songToAdd = new Song(requestBodySong.getSongTitle(), albumToPatch);
