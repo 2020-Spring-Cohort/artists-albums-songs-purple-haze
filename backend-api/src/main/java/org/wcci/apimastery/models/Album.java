@@ -1,27 +1,53 @@
 package org.wcci.apimastery.models;
 
+import com.fasterxml.jackson.annotation.*;
+
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Objects;
 
+
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id"
+)
 @Entity
 public class Album {
 
     @Id
     @GeneratedValue
     private Long id;
-    @ManyToOne
 
+//    @JsonBackReference
+    @ManyToOne
     private Artist artist;
 
 
-    private String albumTitle;
-//    private String recordLabel;
+    @OneToMany (mappedBy = "album")
+    private Collection<Song> songs;
 
+    @OneToMany
+    private Collection<Comment> comments;
+
+    @OneToOne (cascade = {CascadeType.ALL})
+    private Ratings ratings;
+
+    private String albumTitle;
+
+
+    //    private String recordLabel;
     protected Album(){}
 
     public Album(String albumTitle, Artist artist) {
         this.artist = artist;
         this.albumTitle = albumTitle;
+        this.comments = new HashSet<>();
+        this.ratings = new Ratings();
+    }
+
+    public Artist getArtist() {
+        return artist;
     }
 
     public String getAlbumTitle() {
@@ -36,10 +62,18 @@ public class Album {
         return id;
     }
 
+    public Collection<Song> getSongs() {
+        return songs;
+    }
+
+    public Collection<Comment> getComments() {
+        return comments;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Album)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Album album = (Album) o;
         return Objects.equals(id, album.id) &&
                 Objects.equals(artist, album.artist) &&
@@ -49,6 +83,27 @@ public class Album {
     @Override
     public int hashCode() {
         return Objects.hash(id, artist, albumTitle);
+    }
+
+    @Override
+    public String toString() {
+        return "Album{" +
+                "id=" + id +
+                ", artist=" + artist +
+                ", albumTitle='" + albumTitle + '\'' +
+                '}';
+    }
+
+    public void addCommentToAlbum(Comment commentToAdd) {
+        comments.add(commentToAdd);
+    }
+
+    public void addGoodRating() {
+        ratings.addGoodRating();
+    }
+
+    public Ratings getRatings() {
+        return ratings;
     }
 }
 

@@ -1,5 +1,13 @@
 body{
-    font-family: sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.main-header{
+    font-size: 4em;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 3rem;
+    color: white;
 }
 
 .single-artist{
@@ -23,4 +31,19 @@ body{
 
 .artist-picture{
     border-radius: 100%;
+}
+
+.num-thumbs-up {
+    font-weight: 800;
+    display: initial;
+}
+
+.num-thumbs-down {
+    font-weight: 800;
+    display: initial;
+}
+
+.submit-review-comment {
+    background-color: orange;
+    font-size: 1.5em;
 }
